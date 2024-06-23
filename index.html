@@ -1,0 +1,2999 @@
+<!DOCTYPE html>
+<html>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-153847782-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+    gtag("config", "UA-153847782-1");
+</script>
+
+<head>
+    <title>Map - LAND</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/style.css" />
+    <script type="text/javascript" src="/scripts/perfect-scrollbar.js"></script>
+    <link rel="stylesheet" href="/css/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="/css/scrollbar.css" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/css/releases-all.css" />
+    <!-- Bootstrap core CSS-->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <!-- Material Design Bootstrap CSS-->
+    <link rel="stylesheet" href="/css/mdb.min.css" />
+    <!-- maptalks, three, maptalks.three-->
+    <!--link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maptalks/dist/maptalks.css")-->
+    <link rel="stylesheet" href="/css/maptalks.css" />
+    <link rel="stylesheet" href="/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="/css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="/css/card-main.css" />
+    <!--script(type="text/javascript" src="https://cdn.jsdelivr.net/npm/three@0.97.0/build/three.min.js")-->
+    <script type="text/javascript" src="/scripts/three.min.js"></script>
+    <!--script(type="text/javascript" src="https://cdn.jsdelivr.net/npm/maptalks/dist/maptalks.min.js")-->
+    <script type="text/javascript" src="/scripts/maptalks.min.js"></script>
+    <!--script(type="text/javascript" src="https://unpkg.com/maptalks.three/dist/maptalks.three.min.js")-->
+    <script type="text/javascript" src="/scripts/maptalks.three.min.js"></script>
+    <script type="text/javascript" src="/scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/scripts/popper.min.js"></script>
+    <script type="text/javascript" src="/scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/scripts/mdb.min.js"></script>
+    <script type="text/javascript" src="/scripts/owl.carousel.min.js"></script>
+    <!--color manipulation-->
+    <script type="text/javascript" src="/scripts/chroma.min.js"></script>
+    <!-- Somnium explorer classes-->
+    <script type="text/javascript" src="/scripts/helperfunctions.js"></script>
+    <script type="text/javascript" src="/scripts/dataprovider.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/embeddable-nfts/dist/nft-card.min.js"></script>
+    <script type="text/javascript" src="/scripts/web3.min.js"></script>
+</head>
+
+<body class="homepage htmlpage">
+    <main>
+        <div class="container-fluid p-0" id="mapContainer"></div>
+        <div class="text-center" id="main-spinner"
+            style="height: 100vh; display: flex; justify-content: center; align-items: center; background-color: black">
+            <img src="/images/Animation.gif" style="max-height: 100%; max-width: 100%; margin-top: -100px;" />
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div class="text-center" id="data-error" style="display: none; height: 100vh; background-color: black">
+            <div class="card text-white special-color mb-3" style="
+            max-width: 50rem;
+            top: 50%;
+            left: 45%;
+            margin-top: -100px;
+            margin-left: -100px;
+            position: fixed;
+          ">
+                <div class="card-body">
+                    <An>error occurred when retrieving data and rendering the map. Try to
+                        refresh after a few minutes.
+                    </An>
+                </div>
+            </div>
+        </div>
+        <div class="map-info-desc" id="mapInfo" style="display: none">
+            <img id="LandLevelBtn" class="Desc_I_Svg" src="/images/desc_i.svg" alt="" />
+            <div class="info">
+                <img class="Desc_Voice_Svg" src="/images/desc_voice.svg" alt="" />
+                <div id="div_text" class="owl-carousel"></div>
+            </div>
+        </div>
+
+        <div class="dialog-main" id="DialogLandMain" style="display: none">
+            <div class="land-card-main">
+                <div class="top">
+                    <div class="land-title">Loading...</div>
+
+                    <div class="land-center-desc">Loading...</div>
+
+                    <img id="DialogCloseBtn" class="close-img" src="/images/close.png" alt="" />
+                </div>
+
+                <div id="SelectedLandLevelId">Loading...</div>
+            </div>
+        </div>
+
+        <div class="body-loading" style="display: none">
+            <div class="loading-main"></div>
+        </div>
+
+        <div class="quickBuy-btn" id="QuickBuyBtn" style="display: none"></div>
+
+        <div class="dialog-main" id="DialogQuickBuyMain" style="display: none">
+            <div class="land-card-main">
+                <div class="top" style="height: 50px;">
+                    <img id="DialogQuickBuyCloseBtn" class="close-img" src="/images/close.png" alt="" />
+                </div>
+                <div class='card quickbuy-card-main'>
+                    <div class='view overlay img-info-card'>
+                        <div class='card-body'>
+                            <div class='card-main-top'>
+                                <div class='title title-bottom'>
+                                    <div id="LandSelectTitle"></div>
+                                    <div class="land-select-card">
+                                        <select class="land-select" id="land-select"></select>
+                                    </div>
+                                </div>
+                                <div class='main-center' id="land-info-price">Loading...</div>
+                            </div>
+                            <div class='card-main-yield' id="select-land-info">Loading...</div>
+                            <div class='_is_' id="control-land-info">Loading...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dialog-main" id="landDesc" style="display: none">
+            <div class="land-card-main">
+                <div class='land-desc'>
+                    <div class='title'></div>
+                    <div class="info-flex">
+                        <b class='dian'>.</b>
+                        <div class='info'></div>
+                    </div>
+                    <div class="info-flex">
+                        <b class='dian'>.</b>
+                        <div class='info'></div>
+                    </div>
+                    <div class="info-flex">
+                        <b class='dian'>.</b>
+                        <div class='info'></div>
+                    </div>
+                    <div class="info-flex">
+                        <b class='dian'>.</b>
+                        <div class='info'></div>
+                    </div>
+                    <img id="DialogLandDescCloseBtn" class="close-img" src="/images/close.png" alt="" />
+                </div>
+            </div>
+        </div>
+
+
+        <div class="dialog" id="DialogLandError" style="display: none">
+            <div class="main">
+                <img src="/images/error.svg" alt="" />
+                <div class="main-info"></div>
+            </div>
+        </div>
+        <div class="dialog" id="DialogBalanceLandError" style="display: none">
+            <div class="main">
+                <img src="/images/error.svg" alt="" />
+                <div class="main-info"></div>
+            </div>
+        </div>
+        <div class="dialog" id="DialogLandError50005" style="display: none">
+            <div class="main">
+                <img src="/images/error.svg" alt="" />
+                <div class="main-info"></div>
+            </div>
+        </div>
+        <div class="dialog" id="DialogLandError50006" style="display: none">
+            <div class="main">
+                <img src="/images/error.svg" alt="" />
+                <div class="main-info"></div>
+            </div>
+        </div>
+        <div class="dialog" id="DialogLandError50007" style="display: none">
+            <div class="main">
+                <img src="/images/error.svg" alt="" />
+                <div class="main-info"></div>
+            </div>
+        </div>
+        <div class="dialog" id="DialogLandError50008" style="display: none">
+            <div class="main">
+                <img src="/images/error.svg" alt="" />
+                <div class="main-info"></div>
+            </div>
+        </div>
+        <div class="dialog" id="DialogLandError50009" style="display: none">
+            <div class="main">
+                <img src="/images/error.svg" alt="" />
+                <div class="main-info"></div>
+            </div>
+        </div>
+        <div class="dialog" id="DialogLandSuccess" style="display: none">
+            <div class="main">
+                <img src="/images/succeed.svg" alt="" />
+                <div class="main-info"></div>
+            </div>
+        </div>
+
+        <script>
+            // -----------------------------
+            // MapsContainer class
+            // -----------------------------
+            class MapsContainer {
+                constructor() {
+                    this.maps = [];
+                }
+            }
+            mapsContainer = new MapsContainer();
+            const constantObj = {
+                'map-meta-land-orcin.vercel.app': {
+                    baseUrl: 'https://api.meta-land.top'
+                },
+                'map-metaspace.vercel.app': {
+                    baseUrl: 'https://api.metaspaces.land'
+                },
+                'test-metaspace.vercel.app': {
+                    baseUrl: 'https://api-test.metaspaces.land'
+                },
+                'map-meta-land2.vercel.app': {
+                    baseUrl: 'https://api-test.metaspaces.land'
+                },
+                'map-metaspace.pages.dev': {
+                    baseUrl: 'https://api.metaspaces.land'
+                },
+                'map.meta-earth.cc': {
+                    baseUrl: 'https://apiv2.meta-earth.cc',
+                },
+            }
+            const envKey = window.location.hostname || 'map-meta-land-orcin.vercel.app'
+            // console.info(window.location.hostname);
+            const apiBaseUrl = constantObj[envKey].baseUrl
+
+            const TypesStatusMap = {
+                "S": "SSS",
+                "M": "SS",
+                "XL": "S",
+                "A": "A",
+                "B": "B",
+                "C": "C"
+            };
+            let LandConfigs = [];
+
+            const DialogLandError = $("#DialogLandError");
+            const DialogBalanceLandError = $("#DialogBalanceLandError");
+            const DialogLandError50005 = $("#DialogLandError50005");
+            const DialogLandError50006 = $("#DialogLandError50006");
+            const DialogLandError50007 = $("#DialogLandError50007");
+            const DialogLandError50008 = $("#DialogLandError50008");
+            const DialogLandError50009 = $("#DialogLandError50009");
+            const DialogLandSuccess = $("#DialogLandSuccess");
+            const LoadingMain = $(".body-loading");
+            const mapInfo = $("#mapInfo");
+            const DialogLandMain = $("#DialogLandMain");
+            const handleLandLevelBtn = $("#LandLevelBtn");
+            const handleDialogCloseBtn = $("#DialogCloseBtn");
+            const handleDialogLandDescCloseBtn = $("#DialogLandDescCloseBtn");
+            const LandDesc = $('#landDesc')
+            const div_text = $("#mapInfo .info #div_text")
+            const QuickBuyBtn = $("#QuickBuyBtn");
+            const DialogQuickBuy = $("#DialogQuickBuyMain");
+            const handleDialogQuickBuyCloseBtn = $("#DialogQuickBuyCloseBtn");
+            const QuickBuySelect = $('#land-select');
+            const SelectLandInfo = $('#select-land-info');
+            const ControlLandInfo = $('#control-land-info');
+            const LandInfoPrice = $('#land-info-price');
+
+            // Extract address and locale from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const locale = urlParams.get('locale') || "en-US";
+            const address = urlParams.get('address') || "0x87461400e1b8a265b8B749326B8afc8CD44ED105";
+
+            const handleHrefMetaLand = (hrefUrl) => {
+                window.location.href = hrefUrl;
+            }
+
+            const useAddressMemo = (address, num = 4) => {
+                const addressStr =
+                    String(address).slice(0, num) +
+                    "......" +
+                    String(address).slice(-num);
+                return addressStr;
+            };
+
+            const handleSetTimeOutFn = (callback, time) => {
+                let timer = null;
+                timers = setTimeout(() => {
+                    callback();
+                    clearTimeout(timer);
+                }, time);
+            };
+
+            handleSetTimeOutFn(() => {
+                mapInfo.show();
+                QuickBuyBtn.show();
+                // getLandConfig().then((res)=>{
+                //     console.log('getLandConfig data: ', res);
+                //     if (res.code === 200 && res.data && Array.isArray(res.data.price)) {
+                //         LandConfigs = res.data.price;
+                //     } else {
+                //         LandConfigs = [];
+                //     }
+                // });
+            }, 2500);
+
+            handleLandLevelBtn.click(() => {
+                handleSetTimeOutFn(() => DialogLandMain.show(), 300);
+            });
+
+            const handleRulesBtn = () => {
+                handleSetTimeOutFn(() => LandDesc.show(), 100);
+            };
+
+            const SelectedLandLevelList = [
+                {
+                    id: 1,
+                    label: "SSS",
+                    value: 'S'
+                },
+                {
+                    id: 2,
+                    label: "SS",
+                    value: 'M'
+                },
+                {
+                    id: 3,
+                    label: "S",
+                    value: 'XL'
+                },
+                {
+                    id: 4,
+                    label: "A",
+                    value: "A",
+                },
+                {
+                    id: 5,
+                    label: "B",
+                    value: "B",
+                },
+                {
+                    id: 6,
+                    label: "C",
+                    value: "C",
+                },
+            ];
+
+            function renderSelectedLandLevelList() {
+                let list = SelectedLandLevelList;
+
+                let SelectedList = $("#SelectedLandLevelId");
+                if (list.length > 0) {
+                    SelectedList.empty(); //清空内容
+                    list.map((item) => {
+                        let LIST_ITEMS = `
+                            <div class="land-level" data-id=${item.id}>
+                                <div class="left">
+                                    <div class="color-block color-${item.id}"></div>
+                                    <div class="level-info">${item.label}</div>
+                                </div>
+                            
+                                <div class="custom-control custom-checkbox custom-control-inline">
+                                    <input checked type="checkbox" class="filterParcelbySize" value="${item.value}"
+                                        id="parcelSize${item.value}" />
+                                </div>
+                            </div>
+                            `;
+                        return SelectedList.append(LIST_ITEMS);
+                    });
+                }
+            }
+
+            handleDialogCloseBtn.click(() => {
+                handleSetTimeOutFn(() => DialogLandMain.hide(), 300);
+            });
+
+            handleDialogLandDescCloseBtn.click(() => {
+                handleSetTimeOutFn(() => LandDesc.hide(), 300);
+            });
+
+            QuickBuyBtn.click(() => {
+                // handleSetTimeOutFn(() => DialogQuickBuy.show(), 300);
+                const parent = window.parent;
+                if (parent) {
+                    parent.postMessage(JSON.parse(JSON.stringify({ type: 'mintland' })), "*");
+                }
+            });
+
+            handleDialogQuickBuyCloseBtn.click(()=>{
+                handleSetTimeOutFn(() => DialogQuickBuy.hide(), 300);
+            });
+
+            let checkedSelectLand = '';
+
+            QuickBuySelect.on('change', (evt) => {
+                // this.value
+                changeQuickBuySelect(evt.target.value);
+                checkedSelectLand = TypesStatusMap[evt.target.value];
+            });
+
+            function getLandConfig () {
+                return window.fetch(`${apiBaseUrl}/v2/landcfgprice`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }).then((res)=>{
+                    return res.json();
+                }).catch((err)=>{
+                    console.log(err);
+                    return err;
+                })
+            }
+
+            function changeQuickBuySelect (val) {
+                const parcelInfo = window.dataProvider.parcels.find((item)=>{
+                    return item.parcel_size === val;
+                });
+                if (parcelInfo) {
+                    // 找到匹配的数据对象
+                    const landStatus =  Object.keys(parcelInfo.newLands).length === 0 ? parcelInfo.land_state : parcelInfo.newLands.status;
+                    LandInfoPrice.empty().append(`
+                        <span> ${(parcelInfo.last_sale.last_sale_price ? parcelInfo.last_sale.last_sale_price : "0")} USDC</span>
+                        <div class='status'> ${
+                            (landStatus && landStatus === landState.OnAuction
+                                ? window.mapTalksMap.changeLanguageInfo("OnAuction", "경매 중", "競拍中", "Im Bieten", "En licitación", "Dans l'enchère", "In offerta", "競売中", "ในการประมูล", "Đang đấu giá")
+                                : landStatus && landStatus === landState.Earning
+                                    ? window.mapTalksMap.changeLanguageInfo("Earning", "수익 중", "收益中", "Einnahmen", "En ingresos", "Parmi les gains", "In termini di entrate", "収益取得中", "ในผลประโยชน์", "Trong thu nhập")
+                                    : landStatus && landStatus === landState.Normal
+                                        ? window.mapTalksMap.changeLanguageInfo("Normal", "정상", "正常", "normal", "Normal", "Normale", "normale", "正常", "ปกติ", "Bình thường")
+                                        : window.mapTalksMap.changeLanguageInfo("Unavailable", "사용 불가능", "不可用", "Nicht verfügbar", "No disponible", "Non disponible", "Non disponibile", "使用不可", "ไม่สามารถใช้ได้", "Không có sẵn")
+                            )
+                        } </div>
+                    `);
+                    SelectLandInfo.empty().append(`
+                        <div class='top-1 top-1-pd'>
+                            <div class='name'> ${window.mapTalksMap.changeLanguageInfo("Earning rate", "수익률", "收謚率", "Akzeptanzrate posthumer Titel", "Tasa de cierre", "Taux de récupération", "Tasso di accettazione dei titoli postumi", "収益率", "อัตราการตักเตือน", "Thu nhập")} </div>
+                            <span> ${(parcelInfo.interest_rate ? Number(parcelInfo.interest_rate * 100) + "%" : "0")}</span>
+                        </div>
+                        <div class='top-1 top-1-pd'>
+                            <div class='name'> ${window.mapTalksMap.changeLanguageInfo("Earnings", "수익", "收謚", "Um posthume Titel zu erhalten", "Recoger", "récupération", "Per ricevere titoli postumi", "収益", "เก็บเกี่ยว", "Thu Thụy")} </div>
+                            <span> ${((parcelInfo.last_sale.last_sale_price * Number(parcelInfo.interest_rate)) || "0")} USDC</span>
+                        </div>
+                        <div class='top-1 top-1-pd'>
+                            <div class='name'> ${window.mapTalksMap.changeLanguageInfo("Blockchain", "블록체인", "區塊鏈", "Blockchain", "Cadena de bloques", "Blockchain", "Blockchain", "ブロックチェーン", "บล็อกเชน", "Trang chủ")} </div>
+                            <span> Ethereum </span>
+                        </div>
+                        <div class='top-1 top-1-pd'>
+                            <div class='name'> ${window.mapTalksMap.changeLanguageInfo("Size", "크기", "大小", "Größe", "Tamaño", "Taille", "dimensione", "サイズ", "ขนาด", "Kích thước")} </div>
+                            <span> ${(parcelInfo.parcel_size_m ? parcelInfo.parcel_size_m : window.mapTalksMap.changeLanguageInfo("Not", "당분간 없음", "暫無", "Derzeit nicht verfügbar", "Aún no", "Pas encore", "Attualmente non disponibile", "なし", "ไม่มี", "Tạm thời không."))} </span>
+                        </div>
+                    `);
+                    ControlLandInfo.empty().append(`
+                        <div class='card-main-land-rules' onclick='handleRulesBtn()'> ${window.mapTalksMap.changeLanguageInfo("Rules", "규칙", "規 則", "Regel", "Reglas", "Règles", "regola", "ルール", "กฎ", "Quy tắc")}</div>
+                        <div class='land-btn' onclick='handleQuickBuyBtn()'> ${window.mapTalksMap.changeLanguageInfo("Bidding", "경매", "競 拍", "Auktion", "Puja", "Enchères", "Asta", "競売", "การประมูล", "Đấu giá")}</div>
+                    `);
+                }
+            }
+
+            // 根据用户语言加载相应的语言文件
+            function loadLanguage(language) {
+                return fetch(`./locale/${language}.json`).then((response) =>
+                    response.json()
+                );
+            }
+
+            const noticeList = [
+                { "id": 0, "address": "0xa8A7A631d4F68faAaaf4f32dB553b09e4403F908", "price": 100000 },
+                { "id": 1, "address": "0xfD7C638Ec7cf5A61Af7BD455b349Ee46f4CFE3aB", "price": 30000 },
+                { "id": 2, "address": "0x37A27C4722B21D41FFceEeD5C14d1a565ADE7EC2", "price": 30000 },
+                { "id": 3, "address": "0x17D899fce17744464851073519B5FC5c1832e40c", "price": 30000 },
+                { "id": 4, "address": "0x7562Df0bbA7b7cF02B8271837b7F746E735a3EDE", "price": 100000 }
+            ];
+
+            $(document).ready(function () {
+                renderSelectedLandLevelList();
+                div_text.owlCarousel({
+                    loop: true,
+                    margin: 10,
+                    items: 1,
+                    autoplay: true,
+                    autoplayTimeout: 3000,
+                    autoplayHoverPause: true,
+                    //设置垂直旋转木马的方向为'up'
+                    animateOut: 'slideOutUp',
+                    animateIn: 'slideInUp',
+                });
+
+                loadLanguage(locale).then((data) => {
+                    noticeList.forEach(item => {
+                        const addressMemo = useAddressMemo(item.address);
+                        const address = data.notice_info.replace("{address}", addressMemo);
+                        const price = address.replace("{count}", item.price);
+                        let noticeInfo = price + "";
+                        // console.log('noticeInfo', noticeInfo);
+
+                        // Add the noticeInfo to the carousel
+                        div_text.owlCarousel().trigger('add.owl.carousel', [`<div>${noticeInfo}</div>`])
+                    });
+
+                    $(".land-card-main .top .land-title").text(data.land_paraphrase);
+                    $(".land-card-main .top .land-center-desc").text(data.land_desc_info);
+                    $("#DialogLandError .main .main-info").text(data.land_buy_error_msg);
+                    $("#DialogBalanceLandError .main .main-info").text(data.land_balance_empty_msg);
+                    $("#DialogLandError50005 .main .main-info").text(data.land_buy_error_50005);
+                    $("#DialogLandError50006 .main .main-info").text(data.land_buy_error_50006);
+                    $("#DialogLandError50007 .main .main-info").text(data.land_buy_error_50007);
+                    $("#DialogLandError50008 .main .main-info").text(data.land_buy_error_50008);
+                    $("#DialogLandError50009 .main .main-info").text(data.land_buy_error_50009);
+                    $("#DialogLandSuccess .main .main-info").text(data.land_buy_success_msg);
+
+                    // Land usage
+                    $("#landDesc .land-desc .title").text(data.desc_title);
+                    $("#landDesc .land-desc .info:eq(0)").text(data.desc_info_1);
+                    $("#landDesc .land-desc .info:eq(1)").text(data.desc_info_2);
+                    $("#landDesc .land-desc .info:eq(2)").text(data.desc_info_3);
+                    $("#landDesc .land-desc .info:eq(3)").text(data.desc_info_4);
+
+                    $("#QuickBuyBtn").text(data.quick_buy_btn);
+                    $("#LandSelectTitle").text(data.land_select_title);
+                });
+            });
+
+            let isButtonClicked = false;
+            const handleAuctionBtn = async () => {
+                if (isButtonClicked) return;
+                isButtonClicked = true;
+                LoadingMain.show()
+                const landInfo = JSON.parse(localStorage.getItem("landInfo")) || {};
+
+                // const accounts = await window && window.ethereum && window.ethereum.request({
+                //     method: "eth_requestAccounts",
+                // });
+
+                const originalMessage = String(Math.random().toFixed(2));
+                const currentTimestamp = Math.floor(Date.now() / 1000);
+                const messageToSign = JSON.stringify({
+                    timestamp: currentTimestamp,
+                    message: originalMessage,
+                });
+
+                // const signature = await window.ethereum.request({
+                //     method: 'personal_sign',
+                //     params: [messageToSign, account], // 使用用户的第一个账户来签署
+                // });
+
+                // await window.fetch(`${apiBaseUrl}/v1/faucet?address=0x87461400e1b8a265b8B749326B8afc8CD44ED105`, {
+                //     method: "GET",
+                //     headers: {
+                //         "Content-Type": "application/json",
+                //     },
+                // });
+
+                const body = JSON.stringify({
+                    address: String(address),
+                    sig_msg: JSON.parse(messageToSign),
+                    // signature,
+                });
+                const response = await window.fetch(`${apiBaseUrl}/v1/signin`, {
+                    method: "POST",
+                    body,
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+
+                try {
+                    const result = await response.json();
+                    if (result.code === 200) {
+                        const body_buy = JSON.stringify({
+                            buyer: String(address),
+                            price: Number(landInfo?.price),
+                            token_id: Number(landInfo?.token_id),
+                        });
+                        const response_buy = await window.fetch(`${apiBaseUrl}/v1/buy`, {
+                            method: "POST",
+                            body: body_buy,
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                        });
+
+                        const res = await response_buy.json();
+                        let time = null;
+                        let time_2 = null;
+                        // alert(JSON.stringify(res))
+                        if (res.code === 200) {
+                            DialogLandSuccess.show();
+                            time = setTimeout(() => {
+                                DialogLandSuccess.hide();
+                                LoadingMain.hide()
+                                time_2 = setTimeout(() => {
+                                    isButtonClicked = false;
+                                    window.location.reload(); // 购买完成 执行一次刷新的操作
+                                    clearTimeout(time);
+                                    clearTimeout(time_2);
+                                }, 500);
+                            }, 1500);
+                        } else {
+                            // TODO: 处理错误信息 - 需要shannon返回错误码
+                            // 50001 === user balance not enough  用户余额不足
+                            if (res.code === 50001) {
+                                DialogBalanceLandError.show();
+                            } else if(res.code === 50005){
+                                DialogLandError50005.show();
+                            } else if(res.code === 50006){
+                                DialogLandError50006.show();
+                            } else if(res.code === 50007){
+                                DialogLandError50007.show();
+                            } else if(res.code === 50008){
+                                DialogLandError50008.show();
+                            } else if(res.code === 50009){
+                                DialogLandError50009.show();
+                            } else {
+                                DialogLandError.show();
+                            }
+                            time = setTimeout(() => {
+                                isButtonClicked = false;
+                                DialogLandError.hide();
+                                DialogBalanceLandError.hide();
+                                DialogLandError50005.hide();
+                                DialogLandError50006.hide();
+                                DialogLandError50007.hide();
+                                DialogLandError50008.hide();
+                                DialogLandError50009.hide();
+                                LoadingMain.hide()
+                                clearTimeout(time);
+                            }, 1500);
+                        }
+                    }
+                } catch (error) {
+                    console.error("error", error.message);
+                    isButtonClicked = false;
+                    LoadingMain.hide()
+                } finally {
+                    LoadingMain.hide()
+                }
+            };
+
+            const handleQuickBuyBtn = async () => {
+                if (isButtonClicked) return;
+                isButtonClicked = true;
+                LoadingMain.show()
+
+                const originalMessage = String(Math.random().toFixed(2));
+                const currentTimestamp = Math.floor(Date.now() / 1000);
+                const messageToSign = JSON.stringify({
+                    timestamp: currentTimestamp,
+                    message: originalMessage,
+                });
+
+                const body = JSON.stringify({
+                    address: String(address),
+                    sig_msg: JSON.parse(messageToSign),
+                    // signature,
+                });
+                const response = await window.fetch(`${apiBaseUrl}/v1/signin`, {
+                    method: "POST",
+                    body,
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+
+                try {
+                    const result = await response.json();
+                    if (result.code === 200) {
+                        const body_buy = JSON.stringify({
+                            tier: checkedSelectLand,
+                            buyer: String(address),
+                        });
+                        const response_buy = await window.fetch(`${apiBaseUrl}/v1/quickbuy`, {
+                            method: "POST",
+                            body: body_buy,
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                        });
+
+                        const res = await response_buy.json();
+                        let time = null;
+                        let time_2 = null;
+                        // alert(JSON.stringify(res))
+                        if (res.code === 200) {
+                            DialogLandSuccess.show();
+                            time = setTimeout(() => {
+                                DialogLandSuccess.hide();
+                                LoadingMain.hide()
+                                time_2 = setTimeout(() => {
+                                    isButtonClicked = false;
+                                    window.location.reload(); // 购买完成 执行一次刷新的操作
+                                    clearTimeout(time);
+                                    clearTimeout(time_2);
+                                }, 500);
+                            }, 1500);
+                        } else {
+                            // TODO: 处理错误信息 - 需要shannon返回错误码
+                            // 50001 === user balance not enough  用户余额不足
+                            if (res.code === 50001) {
+                                DialogBalanceLandError.show();
+                            } else if(res.code === 50005){
+                                DialogLandError50005.show();
+                            } else if(res.code === 50006){
+                                DialogLandError50006.show();
+                            } else if(res.code === 50007){
+                                DialogLandError50007.show();
+                            } else if(res.code === 50008){
+                                DialogLandError50008.show();
+                            } else if(res.code === 50009){
+                                DialogLandError50009.show();
+                            } else {
+                                DialogLandError.show();
+                            }
+                            time = setTimeout(() => {
+                                isButtonClicked = false;
+                                DialogLandError.hide();
+                                DialogBalanceLandError.hide();
+                                DialogLandError50005.hide();
+                                DialogLandError50006.hide();
+                                DialogLandError50007.hide();
+                                DialogLandError50008.hide();
+                                DialogLandError50009.hide();
+                                LoadingMain.hide()
+                                clearTimeout(time);
+                            }, 1500);
+                        }
+                    }
+                } catch (error) {
+                    console.error("error", error.message);
+                    isButtonClicked = false;
+                    LoadingMain.hide()
+                } finally {
+                    LoadingMain.hide()
+                }
+            }
+
+
+            const landState = {
+                OnAuction: "OnAuction", // 竞拍中
+                Earning: "Earning", // 收益中
+                Normal: "Normal", // 正常的
+                Unavailable: "Unavailable", // 不可用
+                Closed: "Closed", // 关闭的
+                Failed: "Failed", // 失败
+                Regaining: "Regaining", // 恢复
+                Regained: "Regained", // 恢复  重新获得
+            };
+
+            // -----------------------------
+            // MapsTalksMap class
+            // -----------------------------
+            class MapTalksMap {
+                constructor(
+                    mapId,
+                    mapName,
+                    route,
+                    selector,
+                    renderFunction,
+                    dataProvider,
+                    initOnLoad
+                ) {
+                    this.id = mapId;
+                    this.name = mapName;
+                    this.affiliateAddress = "0xd71150b578f50f40d86771129c74e95f161dcabb";
+                    this.selector = selector;
+                    this.thisObj = this;
+                    this.panelTopRight = "";
+                    this.panelTopLeft = "";
+                    this.panelBottomRight = "";
+                    this.dataProvider = dataProvider;
+                    this.initOnPageLoad = initOnLoad;
+                    this.renderer = renderFunction;
+                    this.render = function () {
+                        this.renderer(this);
+                    };
+                    this.metamask = function (user_account) {
+                        this.ownerAddress = user_account;
+                        this.updateThreePolygonLayer(this.ownerParcels);
+                    };
+                    this.pinnedParcels = [];
+                    this.requestedParcel = "0";
+                    this.popupTexts = [];
+                    this.hoverInfos = [];
+                    this.popupInfos = [];
+                    this.popupInfosAlt = [];
+                    this.parcelInfoCards = [];
+                    this.hoverInfoHtml = "";
+                    this.ownerAddress = "";
+                    this.otherOwnerAddress = "";
+                    this.markerHeightOffset = 1;
+                    this.colorScale = chroma
+                        .scale(["yellow", "red", "black"])
+                        .mode("lab")
+                        .domain([0, 75, 100]);
+                    this.colorScale2 = chroma
+                        .scale(["yellow", "purple"])
+                        .mode("lch")
+                        .domain([0, 25, 100]);
+                    this.somniumParcelColor = chroma("lightgrey").desaturate(3);
+                    this.memberParcelNotForSale = chroma("red").desaturate(2);
+                    this.memberParcelForSale = chroma("yellow").desaturate(1);
+                    this.colorMap = chroma
+                        .scale(["green", "yellow", "red", "purple", "navy"])
+                        .colors(250);
+                    this.currentView = {};
+                    this.views = [];
+                    this.recentlyListedViews = [];
+                    // filter settings
+                    // this.filter_size = "S M XL";
+                    this.filter_size = "S M XL A B C";
+                    this.filter_location = "S M XL A B C";
+                    this.filter_symbol = "ETH DAI CUBE";
+                    this.filterScaleMax = 50;
+                    this.filterScaleMin = 0;
+                    this.filterScaleCutOff = true;
+
+                    // rendering options
+                    this.materialMode = 1;
+                    this.wireFrame = 0;
+
+                    // init requested parcel
+                    this.requestedParcel = isNaN(this.requestedParcel)
+                        ? 0
+                        : parseInt(this.requestedParcel);
+                    this.requestedParcel =
+                        this.requestedParcel < 0 || this.requestedParcel > 5000
+                            ? 0
+                            : this.requestedParcel;
+
+                    // console.log('this.dataProvider :>> ', this.dataProvider);
+                }
+
+                // method: initialize maptalks map
+                initMap(div) {
+                    var thisObj = this;
+
+                    this.map = new maptalks.Map(this.id, {
+                        center: [0, 0],
+                        zoom: 11,
+                        minZoom: 8,
+                        pitch: 45,
+                        //bearing : 180,
+                        attribution: false,
+                        //zoomControl : true,
+                        //overviewControl : true,
+                        fixCenterOnResize: true,
+                        dragRotate: true, // set to true if you want a rotatable map
+                    });
+
+                    // somnium space map image
+                    var imageLayer = new maptalks.ImageLayer("images", [
+                        {
+                            url: "/images/Waterfront_Extended_Parcels_Map_allgreen.jpg",
+                            extent: [-1, -1, 1, 1],
+                            opacity: 1,
+                        },
+                    ]);
+                    this.map.addLayer(imageLayer);
+
+                    // init menu
+                    var menuItems = "";
+                    this.dataProvider.filters.forEach(function (filter, index) {
+                        if (filter.showInMenu == "1") {
+                            menuItems +=
+                                "<a class='dropdown-item white-text' onclick=mapTalksMap.initFilter(mapTalksMap.dataProvider.filters[" +
+                                index +
+                                "]);mapTalksMap.updateThreePolygonLayer(mapTalksMap.dataProvider.filters[" +
+                                index +
+                                "]) >" +
+                                filter.name +
+                                "</a>";
+                        }
+                    });
+
+                    if (this.requestedParcel != 0) {
+                        //menuItems +=
+                    }
+                    var menuHtml =
+                        `
+                <button class='btn dropdown-toggle mr-4 special-color white-text' type='button' data-toggle='dropdown'
+                    aria-haspopup='true' aria-expanded='false'><i class="fas fa-eye"></i>&nbsp;Views</button>
+                <div class='dropdown-menu special-color'>` +
+                        menuItems +
+                        `<div class='dropdown-divider'></div>
+                    <a class='dropdown-item  white-text' onclick=navControl.connectMetaMask();mapTalksMap.updateThreePolygonLayer(mapTalksMap.ownerParcels); href='#'>My parcels</a>
+<!--a class='dropdown-item  white-text' onclick=mapTalksMap.streetView(mapTalksMap.currentView); href='#'>Streetview</a- ->
+</div >
+                `;
+                    // console.log(menuHtml);
+                    this.menu = new maptalks.control.Panel({
+                        position: "top-right",
+                        draggable: false,
+                        custom: true,
+                        content: menuHtml,
+                    });
+                    //this.listBoxElem = this.id + '-listBox';
+                    this.map.addControl(this.menu);
+
+                    // init infoPane on which parcels can be pinned
+                    var infoPanelHtml =
+                        `
+                < ul class='nav nav-tabs w-20' id = '` +
+                        this.id +
+                        `-tabs' style='_background:#34495e' role='tablist'>
+<li class='nav-item'>
+  <a class='nav-link active rounded-0 special-color' id='` +
+                        this.id +
+                        `-tab1' data-toggle='tab' href='#` +
+                        this.id +
+                        `-pane1' role='tab' aria-controls='` +
+                        this.id +
+                        `-control1' aria-selected='true'><span class='white-text'><i class="fas fa-thumbtack"></i>&nbsp;Parcels</span></a>
+</li>
+<li class='nav-item'>
+  <a class='nav-link rounded-0 white' id='` +
+                        this.id +
+                        `-tab2' data-toggle='tab' href='#` +
+                        this.id +
+                        `-pane2' role='tab' aria-controls='` +
+                        this.id +
+                        `-control2' aria-selected='false'><span class='black-text'>&#8675;</span></a>
+</li>
+</ul>
+<div class='tab-content w-20 special-color' id='` +
+                        this.id +
+                        `-tabContent'>
+<div class='tab-pane fade show active special-color' id='` +
+                        this.id +
+                        `-pane1' role='tabpanel' aria-labelledby='` +
+                        this.id +
+                        `-tab1'>
+  <!-- Carousel for pinned parcels -->
+  <div id='carousel' class="owl-carousel owl-theme special-color" style='width:380px'>
+  </div>
+</div>
+<div class='tab-pane fade bg-white' id='` +
+                        this.id +
+                        `-pane2' role='tabpanel' aria-labelledby='` +
+                        this.id +
+                        `-tab2'>
+</div>
+</div>
+
+`;
+                    this.infoPanel = new maptalks.control.Panel({
+                        position: "bottom-left",
+                        draggable: false,
+                        custom: true,
+                        content: infoPanelHtml,
+                    });
+                    //this.listBoxElem = this.id + '-listBox';
+                    this.map.addControl(this.infoPanel);
+
+                    this.carousel = $(".owl-carousel").owlCarousel({
+                        loop: false,
+                        margin: 10,
+                        nav: true,
+                        responsive: {
+                            0: {
+                                items: 2,
+                            },
+                            600: {
+                                items: 2,
+                            },
+                            1000: {
+                                items: 2,
+                            },
+                        },
+                    });
+
+                    var filterPanelHtml =
+                        `
+<ul class='nav nav-tabs w-20' id='` +
+                        this.id +
+                        `-filtertabs' style='_background:#34495e' role='tablist'>
+<li class='nav-item special-color'>
+  <a class='nav-link active rounded-0 special-color' id='` +
+                        this.id +
+                        `-filtertab1' data-toggle='tab' href='#` +
+                        this.id +
+                        `-filterpane1' role='tab' aria-controls='` +
+                        this.id +
+                        `-filtercontrol1' aria-selected='true'><span class='white-text'><i class="fas fa-sliders-h"></i>&nbsp;Filter</span></a>
+</li>
+<li class='nav-item special-color'>
+  <a class='nav-link rounded-0 special-color' id='` +
+                        this.id +
+                        `-filtertab3' data-toggle='tab' href='#` +
+                        this.id +
+                        `-filterpane3' role='tab' aria-controls='` +
+                        this.id +
+                        `-filtercontrol3' aria-selected='false'><span class='white-text'><i class="fas fa-cog"></i>&nbsp;Settings</span></a>
+</li>
+<li class='nav-item special-color'>
+  <a class='nav-link rounded-0 white' id='` +
+                        this.id +
+                        `-filtertab2' data-toggle='tab' href='#` +
+                        this.id +
+                        `-filterpane2' role='tab' aria-controls='` +
+                        this.id +
+                        `-filtercontrol2' aria-selected='false'><span class='black-text'>&#8675;</span></a>
+</li>
+</ul>
+<div class='tab-content w-20 special-color' id='` +
+                        this.id +
+                        `-tabContent'>
+<div class='tab-pane fade show active special-color p-3' id='` +
+                        this.id +
+                        `-filterpane1' role='tabpanel' aria-labelledby='` +
+                        this.id +
+                        `-filtertab1'>
+
+  <div style='float:left'>
+    <label class='white-text' id='range-label-zoom' for='customRangeZoom'>Zoom level = 11</label>
+  </div>
+  <div style='float:right'>
+    <i style='cursor: pointer;float:right' data-toggle="modal" data-target='#centralModalFilter' class="fas fa-question-circle"></i>
+  </div>
+  <div>
+    <input type='range' class='custom-range' min='8' max='15' value='11' step='0.05' id='customRangeZoom'>
+  </div>
+
+
+  <div>
+    <label class='white-text' id='range-label-offset' for='customRangeOffset'>Parcel height</label>
+    <input type='range' class='custom-range' min='0' max='30000' value='0' id='customRangeOffset'>
+  </div>
+
+  <div>
+    <label class='white-text' id='range-label-min' for='customRangeMin'>Scale/Range Min = 0</label>
+    <input type='range' class='custom-range' value='0' id='customRangeMin'>
+  </div>
+
+  <div>
+    <label class='white-text' id='range-label-max' for='customRangeMax'>Scale/Range Max = 50</label>
+    <input type='range' class='custom-range' value='0' id='customRangeMax'>
+  </div>
+
+  <!--Limit -->
+  <div class="custom-control custom-checkbox custom-control-inline">
+    <input type="checkbox" class="custom-control-input filterScaleCutOff" id="filterScaleCutOff">
+    <label class="custom-control-label white-text" for="filterScaleCutOff">Show all</label>
+  </div>
+
+  <br/>
+
+  <!-- Default inline 1  filterParcelbySize -->
+  <div class="custom-control custom-checkbox custom-control-inline">
+    <input checked type="checkbox" class="custom-control-input" value='S' id="parcelSizeS">
+    <label class="custom-control-label white-text" for="parcelSizeS">S</label>
+  </div>
+
+  <!-- Default inline 2  filterParcelbySize -->
+  <div class="custom-control custom-checkbox custom-control-inline">
+    <input checked type="checkbox" class="custom-control-input" value='M' id="parcelSizeM">
+    <label class="custom-control-label white-text" for="parcelSizeM">M</label>
+  </div>
+
+  <!-- Default inline 3  filterParcelbySize -->
+  <div class="custom-control custom-checkbox custom-control-inline">
+    <input checked type="checkbox" class="custom-control-input" value='XL' id="parcelSizeXL">
+    <label class="custom-control-label white-text" for="parcelSizeXL">XL</label>
+  </div>
+
+  <br/>
+
+  <!-- Default inline 1-->
+  <div class="custom-control custom-checkbox custom-control-inline">
+    <input checked type="checkbox" class="custom-control-input filterParcelbyLocation" value='waterfront' id="waterfront">
+    <label class="custom-control-label white-text" for="waterfront">waterfront</label>
+  </div>
+
+  <!-- Default inline 2-->
+  <div class="custom-control custom-checkbox custom-control-inline">
+    <input checked type="checkbox" class="custom-control-input filterParcelbyLocation" value='roadside' id="roadside">
+    <label class="custom-control-label white-text" for="roadside">roadside</label>
+  </div>
+
+  <!-- Default inline 3-->
+  <div class="custom-control custom-checkbox custom-control-inline">
+    <input checked type="checkbox" class="custom-control-input filterParcelbyLocation" value='Land' id="inland">
+    <label class="custom-control-label white-text" for="inland">Land</label>
+  </div>
+
+  </br>
+
+  <!-- Default inline 1-->
+  <div class="custom-control custom-checkbox custom-control-inline">
+    <input checked type="checkbox" class="custom-control-input filterParcelbySymbol" value='ETH' id="ETH">
+    <label class="custom-control-label white-text" for="ETH">eth</label>
+  </div>
+
+  <!-- Default inline 2-->
+  <!--div class="custom-control custom-checkbox custom-control-inline">
+    <input checked type="checkbox" class="custom-control-input filterParcelbySymbol" value='WETH' id="WETH">
+    <label class="custom-control-label white-text" for="WETH">weth</label>
+  </div-->
+
+  <!-- Default inline 3-->
+  <div class="custom-control custom-checkbox custom-control-inline">
+    <input checked type="checkbox" class="custom-control-input filterParcelbySymbol" value='DAI' id="DAI">
+    <label class="custom-control-label white-text" for="DAI">dai</label>
+  </div>
+
+  <!-- Default inline 4-->
+  <div class="custom-control custom-checkbox custom-control-inline">
+    <input checked type="checkbox" class="custom-control-input filterParcelbySymbol" value='CUBE' id="CUBE">
+    <label class="custom-control-label white-text" for="CUBE">cube</label>
+  </div>
+
+</div>
+<div class='tab-pane fade special-color p-3' id='` +
+                        this.id +
+                        `-filterpane3' role='tabpanel' aria-labelledby='` +
+                        this.id +
+                        `-filtertab1'>
+  <div class="custom-control custom-checkbox custom-control-inline">
+    <input type="checkbox" class="custom-control-input filterRenderMode" id="filterRenderMode">
+    <label class="custom-control-label white-text" for="filterRenderMode">Sunlight</label>
+  </div>
+  <div class="custom-control custom-checkbox custom-control-inline">
+    <input type="checkbox" class="custom-control-input filterWireFrame" id="filterWireFrame">
+    <label class="custom-control-label white-text" for="filterWireFrame">Wireframe</label>
+  </div>
+</div>
+<div class='tab-pane fade' id='` +
+                        this.id +
+                        `-filterpane2' role='tabpanel' aria-labelledby='` +
+                        this.id +
+                        `-filtertab2'>
+</div>
+</div>
+
+<!-- Central Modal Small -->
+<div class='modal fade' id='centralModalFilter' tabindex='-1' role='dialog' aria-labelledby='filterModalLabel'
+aria-hidden='true'>
+
+<!-- Change class .modal-sm to change the size of the modal -->
+<div class='modal-dialog modal-lg' role='document'>
+
+
+  <div class='modal-content'>
+    <div class='modal-header'>
+      <h4 class='modal-title w-100' id='filterModalLabel'>Filter</h4>
+      <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+        <span aria-hidden='true'>&times;</span>
+      </button>
+    </div>
+    <div class='modal-body'>
+
+      <div class='accordion' id='accordionExample'>
+        <div class='card z-depth-0 bordered'>
+          <div class='card-header' id='headingOne'>
+            <h5 class='mb-0'>
+              <button class='btn btn-link' type='button' data-toggle='collapse' data-target='#collapseOne'
+                aria-expanded='true' aria-controls='collapseOne'>
+                Zoom Level
+              </button>
+            </h5>
+          </div>
+          <div id='collapseOne' class='collapse show' aria-labelledby='headingOne'
+            data-parent='#accordionExample'>
+            <div class='card-body'>
+            With the Zoom level slider you can zoom in and out of the map. You can also zoom with your mousewheel, but the difference is that the slider allows you to zoom with smaller increments.
+            </div>
+          </div>
+        </div>
+        <div class='card z-depth-0 bordered'>
+          <div class='card-header' id='headingTwo'>
+            <h5 class='mb-0'>
+              <button class='btn btn-link collapsed' type='button' data-toggle='collapse'
+                data-target='#collapseTwo' aria-expanded='false' aria-controls='collapseTwo'>
+                Parcel Height
+              </button>
+            </h5>
+          </div>
+          <div id='collapseTwo' class='collapse' aria-labelledby='headingTwo' data-parent='#accordionExample'>
+            <div class='card-body'>
+            The Parcel height slider allows you increase/decrease the height of the bars that represent parcels. It doesn't act as a filter, but only affects the size of parcels already drawn on the map.
+            </div>
+          </div>
+        </div>
+        <div class='card z-depth-0 bordered'>
+          <div class='card-header' id='headingThree'>
+            <h5 class='mb-0'>
+              <button class='btn btn-link collapsed' type='button' data-toggle='collapse'
+                data-target='#collapseThree' aria-expanded='false' aria-controls='collapseThree'>
+                Scale/Range Sliders
+              </button>
+            </h5>
+          </div>
+          <div id='collapseThree' class='collapse' aria-labelledby='headingThree' data-parent='#accordionExample'>
+            <div class='card-body'>
+            The Scale/Range Sliders act as filters by default. For example, if you have selected the view 'Parcel Price Heatmap', only parcels are shown that were sold between the minimum and maximum values as set by the sliders. Also, all available colors on the color palette (from yellow to orange to red to purple) are mapped within the set range. So if you selected 2 as minimum value and 20 as maximum value, 2 ETH will be represented by yellow and 20 ETH by purple. Anything between these values will be mapped to a color on this gradient scale. Note that the same applies to the height of the bars. Parcels sold for 20 ETH will be highest. Parcels sold for 2 ETH will be lowest. This means that by using the Scale/Range sliders you can create more or less contrast.</br>Note that transactions in other currencies (like CUBES or DAI) have been converted to ETH to allow for proper comparison.
+            </div>
+          </div>
+        </div>
+
+        <div class='card z-depth-0 bordered'>
+          <div class='card-header' id='headingFour'>
+            <h5 class='mb-0'>
+              <button class='btn btn-link collapsed' type='button' data-toggle='collapse'
+                data-target='#collapseFour' aria-expanded='false' aria-controls='collapseFour'>
+                'Show All' Checkbox
+              </button>
+            </h5>
+          </div>
+          <div id='collapseFour' class='collapse' aria-labelledby='headingFour' data-parent='#accordionExample'>
+            <div class='card-body'>
+            By checking the 'Show All' checkbox you disable the Scale/Range Slider's filtering. Let's say you set the sliders to 2 and 20. Only parcels sold between 2 ETH and 20 ETH will be displayed. But if you check 'Show All' all parcels will be shown, those that were sold for less than 2 ETH and those that were sold for more the 20 ETH. Note however, that the colors and heights are not affected. This means that parcels sold for less than 2 ETH will all show up as yellow and have the same height as parcels sold for 2 ETH. Those sold for more than 20 ETH will all show up as purple and have the same height as the parcels that sold for 20 ETH.
+            </div>
+          </div>
+        </div>
+
+        <div class='card z-depth-0 bordered'>
+          <div class='card-header' id='headingFive'>
+            <h5 class='mb-0'>
+              <button class='btn btn-link collapsed' type='button' data-toggle='collapse'
+                data-target='#collapseFive' aria-expanded='false' aria-controls='collapseFive'>
+                Parcel Size and Parcel Location checkboxes
+              </button>
+            </h5>
+          </div>
+          <div id='collapseFive' class='collapse' aria-labelledby='headingFive' data-parent='#accordionExample'>
+            <div class='card-body'>
+            These checkboxes act as filters allowing you to find exactly those parcels you are interested in.
+            </div>
+          </div>
+        </div>
+
+        <div class='card z-depth-0 bordered'>
+          <div class='card-header' id='headingSix'>
+            <h5 class='mb-0'>
+              <button class='btn btn-link collapsed' type='button' data-toggle='collapse'
+                data-target='#collapseSix' aria-expanded='false' aria-controls='collapseSix'>
+                Currency checkboxes
+              </button>
+            </h5>
+          </div>
+          <div id='collapseSix' class='collapse' aria-labelledby='headingSix' data-parent='#accordionExample'>
+            <div class='card-body'>
+            These checkboxes act as filters allowing you to focus on parcels that were purchased or sold for a specific currency.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <div class='modal-footer'>
+      <button type='button' class='btn btn-sm special-color' data-dismiss='modal'><span class='white-text'>Close</span></button>
+    </div>
+  </div>
+</div>
+</div>
+<!-- Central Modal Small -->
+
+`;
+
+                    this.filterPanel = new maptalks.control.Panel({
+                        position: "bottom-right",
+                        draggable: false,
+                        custom: true,
+                        content: filterPanelHtml,
+                    });
+                    this.map.addControl(this.filterPanel);
+
+                    $("#customRangeZoom").on("change", function (event) {
+                        thisObj.map.setZoom(parseFloat(event.target.value));
+                        $("#range-label-zoom").html("Zoom level = " + event.target.value);
+                    });
+
+                    $("#customRangeOffset").on("change", function (event) {
+                        thisObj.markerHeightOffset = parseInt(event.target.value);
+                        thisObj.updateThreePolygonLayer(thisObj.currentView);
+                        //$('#range-label-offset').html("Increase heights = " + event.target.value);
+                    });
+
+                    $("#customRangeMin").on("change", function (event) {
+                        // store new value
+                        thisObj.filterScaleMin = parseInt(event.target.value);
+                        thisObj.currentView.filter.customRangeMin.value = parseInt(
+                            event.target.value
+                        );
+
+                        thisObj.updateThreePolygonLayer(thisObj.currentView);
+                        $("#range-label-min").html("Scale/Range Min = " + event.target.value);
+                    });
+
+                    $("#customRangeMax").on("change", function (event) {
+                        // store new value
+                        thisObj.filterScaleMax = parseInt(event.target.value);
+                        thisObj.currentView.filter.customRangeMax.value = parseInt(
+                            event.target.value
+                        );
+
+                        thisObj.updateThreePolygonLayer(thisObj.currentView);
+                        $("#range-label-max").html("Scale/Range Max = " + event.target.value);
+                    });
+
+                    $("#filterScaleCutOff").on("change", function (event) {
+                        //console.log(event.target.checked);
+                        thisObj.filterScaleCutOff = this.checked ? false : true;
+                        thisObj.updateThreePolygonLayer(thisObj.currentView);
+                    });
+
+                    $("#filterRenderMode").on("change", function (event) {
+                        thisObj.materialMode = this.checked ? 2 : 1;
+                        thisObj.updateThreePolygonLayer(thisObj.currentView);
+                    });
+
+                    $("#filterWireFrame").on("change", function (event) {
+                        thisObj.wireFrame = this.checked ? 1 : 0;
+                        thisObj.updateThreePolygonLayer(thisObj.currentView);
+                    });
+
+                    $(".filterParcelbySize").on("change", function (event) {
+                        //console.log(event.target.checked);
+                        thisObj.filter_size = "";
+                        $(".filterParcelbySize").each(function (index) {
+                            if (this.checked) {
+                                thisObj.filter_size = thisObj.filter_size + this.value + " ";
+                            }
+
+                        });
+                        // TODO: 可操作的方法
+                        // console.log(thisObj.filter_size);
+                        // console.log("thisObj.currentView :>> ", thisObj.currentView);
+                        thisObj.updateThreePolygonLayer(thisObj.currentView);
+                        //$('#range-label').html(event.target.value);
+                    });
+
+                    $(".filterParcelbyLocation").on("change", function (event) {
+                        //console.log(event.target.checked);
+                        thisObj.filter_location = "";
+                        $(".filterParcelbyLocation").each(function (index) {
+                            if (this.checked)
+                                thisObj.filter_location =
+                                    thisObj.filter_location + this.value + " ";
+                        });
+                        console.log(thisObj.filter_location);
+                        thisObj.updateThreePolygonLayer(thisObj.currentView);
+                        //$('#range-label').html(event.target.value);
+                    });
+
+                    $(".filterParcelbySymbol").on("change", function (event) {
+                        //console.log(event.target.checked);
+                        thisObj.filter_symbol = "";
+                        $(".filterParcelbySymbol").each(function (index) {
+                            if (this.checked)
+                                thisObj.filter_symbol = thisObj.filter_symbol + this.value + " ";
+                        });
+                        console.log(thisObj.filter_symbol);
+                        thisObj.updateThreePolygonLayer(thisObj.currentView);
+                        //$('#range-label').html(event.target.value);
+                    });
+
+                    // listen to zoom event and update zoom slider
+                    this.map.on("zoomend", updateZoomSlider);
+
+                    function updateZoomSlider(param) {
+                        $("#customRangeZoom").val(param.to);
+                        $("#range-label-zoom").html("Zoom level = " + param.to);
+                    }
+
+                    // init meta categories
+                    var metaCategories = "";
+                    this.dataProvider.metaCategories.forEach(function (filter, index) {
+                        //metaCategories += "<a onclick=mapTalksMap.requestedCategory='" + thisObj.dataProvider.metaCategories[index] + "';mapTalksMap.initFilter(mapTalksMap.requestedCategoryView);mapTalksMap.updateThreePolygonLayer(mapTalksMap.requestedCategoryView) class='badge badge-light mr-1'>" + thisObj.dataProvider.metaCategories[index] + "</a>";
+                        metaCategories +=
+                            "<a onclick=mapTalksMap.requestedCategory='" +
+                            thisObj.dataProvider.metaCategories[index] +
+                            "';mapTalksMap.searchParcels() class='badge badge-light mr-1'>" +
+                            thisObj.dataProvider.metaCategories[index] +
+                            "</a>";
+                    });
+                    // console.log(metaCategories);
+
+                    var titlePanelHtml =
+                        `
+<a class='btn special-color' data-toggle='collapse' href='#collapseExample' aria-expanded='false' aria-controls='collapseExample'>
+<span class='white-text'><i class="fas fa-info-circle"></i>&nbsp;Search</span>
+</a>
+<div class='card collapse special-color' id='collapseExample' style='width:225px;padding-bottom:10px;'>
+<div class='card-body special-color' style='padding-bottom:10px;'>
+  <div id='currentView' class='card-title white-text'></div>
+  <span><div id='parcelsLoaded' class='card-title white-text' style='float:left;margin-right:5px'></div><i style='cursor: pointer;' data-toggle="modal" data-target='#centralModalSm' class="fas fa-question-circle"></i></span>
+  <input id='searchParcel' class='form-control _mr-sm-2' type='text' style='width:175px' placeholder='Search Parcel' aria-label='Search'>
+  <!--button class='btn btn-unique btn-sm my-0' _type='submit'>Search</button-->
+  ` +
+                        metaCategories +
+                        `
+</div>
+
+<div style='max-height:50vh;padding-top:5px' class='card-body special-color scrollbar scrollbar-primary'>
+  <div class='force-overflow' id='searchResults'></div>
+</div>
+
+</div>
+
+<!-- Central Modal Small -->
+<div class='modal fade' id='centralModalSm' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'
+aria-hidden='true'>
+
+<!-- Change class .modal-sm to change the size of the modal -->
+<div class='modal-dialog modal-lg' role='document'>
+
+  <div class='modal-content'>
+    <div class='modal-header'>
+      <h4 class='modal-title w-100' id='myModalLabel'>Parcels Loaded</h4>
+      <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+        <span aria-hidden='true'>&times;</span>
+      </button>
+    </div>
+    <div class='modal-body'>
+      Parcel information is retrieved from OpenSea. They were last refreshed <span id='parcelsRefreshed' _style='float:left;margin-right:5px;font-size:14px'></span>. If all parcels have been loaded successfully, this number will be 5000. In the event that less than 5000 parcels have been loaded you can still use the map but you are advised to refresh after 30-60 minutes.</br></br>
+      Note that there is a small delay before changes on OpenSea are reflected on the map. Therefore, always check parcels on OpenSea for the latest status and price information.
+    </div>
+
+    <div class='modal-footer'>
+      <button type='button' class='btn _btn-secondary btn-sm special-color' data-dismiss='modal'><span class='white-text'>Close</span></button>
+    </div>
+  </div>
+</div>
+
+</div>
+<!-- Central Modal Small -->
+
+`;
+                    this.titlePanel = new maptalks.control.Panel({
+                        position: "top-left",
+                        draggable: false,
+                        custom: true,
+                        content: titlePanelHtml,
+                    });
+                    this.map.addControl(this.titlePanel);
+
+                    $("#parcelsLoaded").html(
+                        "Parcels loaded: " + this.dataProvider.parcels.length
+                    ) + " ";
+                    $("#parcelsRefreshed").html(
+                        (
+                            (Math.round(Date.now() / 1000) -
+                                this.dataProvider.parcelsRefreshed) /
+                            60
+                        ).toFixed(0) + " minutes ago"
+                    );
+
+                    $("#searchParcel").on("keyup", function (e) {
+                        if (e.keyCode === 13) {
+                            var requestedParcel = e.target.value;
+                            if (!isNaN(requestedParcel)) {
+                                if (requestedParcel > 0 && requestedParcel <= 5000) {
+                                    thisObj.requestedParcel = requestedParcel;
+                                    thisObj.initFilter(thisObj.requestedParcelView);
+                                    thisObj.updateThreePolygonLayer(thisObj.requestedParcelView);
+
+                                    // update search results
+                                    var parcelIndex = thisObj.dataProvider.parcels.findIndex(
+                                        (parcel) => parcel.token_id == requestedParcel
+                                    );
+                                    $("#searchResults").html(
+                                        "<div class='text-center'><i style='cursor:pointer' onclick=$('#searchResults').html(''); class='fas fa-window-minimize'></i></div>" +
+                                        thisObj.parcelInfoCards[parcelIndex]
+                                    );
+                                    thisObj.changeView(parcelIndex);
+                                }
+                            } else {
+                                thisObj.requestedCategory = e.target.value;
+
+                                // update search results
+                                thisObj.searchParcels();
+                            }
+                        }
+                    });
+                }
+
+                // method: show search results and update layer
+                searchParcels() {
+                    var thisObj = this;
+                    $("#searchResults").html("");
+                    var searchResult = thisObj.dataProvider.parcels.filter(function (
+                        currentAsset
+                    ) {
+                        return eval(thisObj.requestedCategoryView.show_condition);
+                    });
+                    if (searchResult.length > 0) {
+                        $("#searchResults").append(
+                            "<div class='text-center'><i style='cursor:pointer' onclick=$('#searchResults').html(''); class='fas fa-window-minimize'></i></div>"
+                        );
+                    }
+                    searchResult.forEach(function (parcel) {
+                        $("#searchResults").append(thisObj.parcelInfoCards[parcel.index]);
+                        $("#searchResults").append("<br/>");
+                    });
+                    thisObj.initFilter(thisObj.requestedCategoryView);
+                    thisObj.updateThreePolygonLayer(thisObj.requestedCategoryView);
+                }
+
+                changeView(i) {
+                    var thisObj = this;
+                    var parcel = thisObj.polygons[i].getProperties();
+                    var x = parcel.coordinates.x;
+                    var y = parcel.coordinates.y;
+                    var location = [];
+                    location.push(x);
+                    location.push(y);
+                    thisObj.map.animateTo(
+                        {
+                            center: location,
+                            zoom: 12,
+                            pitch: 45,
+                            bearing: 0,
+                        },
+                        {
+                            duration: 5000,
+                        }
+                    );
+                    // if you want a second animation after the first, uncomment the following.
+                    //setTimeout(function () {
+                    //  thisObj.map.animateTo({
+                    //    center: [0,0],
+                    //    zoom: 10,
+                    //    pitch: 45,
+                    //    bearing: 0
+                    //  }, {
+                    //    duration: 5000
+                    //  });
+                    //}, 7000);
+                }
+
+                // method: helper method to get some info about the map
+                getMapStatus() {
+                    var extent = this.map.getExtent(),
+                        ex = [
+                            "{",
+                            "xmin:" + extent.xmin.toFixed(5),
+                            ", ymin:" + extent.ymin.toFixed(5),
+                            ", xmax:" + extent.xmax.toFixed(5),
+                            ", ymax:" + extent.xmax.toFixed(5),
+                            "}",
+                        ].join("");
+                    var center = this.map.getCenter();
+                    var mapStatus = [
+                        "Center : [" +
+                        [center.x.toFixed(5), center.y.toFixed(5)].join() +
+                        "]",
+                        "Extent : " + ex,
+                        "Size : " + this.map.getSize().toArray().join(),
+                        "Zoom : " + this.map.getZoom(),
+                        "MinZoom : " + this.map.getMinZoom(),
+                        "MaxZoom : " + this.map.getMaxZoom(),
+                        "Projection : " + this.map.getProjection().code,
+                    ];
+                    return mapStatus;
+                }
+
+                changeLanguageInfo(enUS, koKR, zhHK, deDE, esEs, frFR, itIT, jaJP, thTH, viVI) {
+                    let localeEnum = {
+                        'en-US': enUS,
+                        'ko-KR': koKR,
+                        'zh-HK': zhHK,
+                        'de-DE': deDE,
+                        'es-ES': esEs,
+                        'fr-FR': frFR,
+                        'it-IT': itIT,
+                        'ja-JP': jaJP,
+                        'th-TH': thTH,
+                        'vi-VI': viVI
+                    };
+                    let umiLocale = locale;
+                    return localeEnum[umiLocale];
+                }
+
+                formatTime(time) {
+                    if (typeof time !== "string" && !(time instanceof Date)) {
+                        throw new Error("Invalid time format");
+                    }
+
+                    let date;
+                    if (time instanceof Date) {
+                        date = time;
+                    } else {
+                        // 假设输入的时间字符串是合法的时间格式
+                        date = new Date(time);
+                    }
+
+                    const hours = date.getHours();
+                    const minutes = date.getMinutes();
+                    const seconds = date.getSeconds();
+
+                    return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(
+                        2,
+                        "0"
+                    )}:${String(seconds).padStart(2, "0")}`;
+                }
+
+                // method: interate through parcels array in this.dataProvider and prepare hover and popup html
+                prepareMapData() {
+                    let thisObj = this
+
+                    for (var asset in this.dataProvider.parcels) {
+                        var currentAsset = this.dataProvider.parcels[asset];
+
+                        const newLands = currentAsset.newLands;
+                        // 找到匹配的数据对象
+                        const isEmptyNewLands = Object.keys(newLands).length === 0;
+
+                        const landStatus = isEmptyNewLands ? currentAsset.land_state : newLands.status;
+                        const currentLands = isEmptyNewLands ? currentAsset : newLands;
+                        const dayTime = isEmptyNewLands ? "" : newLands;
+
+                        // some random numbers for pulling images (until there is a solution for pulling somnium images)
+                        var i = Math.floor(Math.random() * 500) + 1;
+                        var h = 150;
+
+                        const typesStatus = TypesStatusMap[currentAsset.parcel_size] || '';
+
+                        var text =
+                            typesStatus + " | " + currentAsset.parcel_location;
+
+                        // hover html based on bootstrap card class
+                        var hoverInfo =
+                            "<div class='card " +
+                            this.id +
+                            "-item text-center rounded-0 w-20 m-1' token_id='" +
+                            currentAsset.token_id +
+                            "' style='min-width:150px;max-width:150px;max-height:200px'><div class='view overlay'><img class='card-img-top rounded-0 d-none d-sm-block'" +
+                            i +
+                            "/200/" +
+                            h +
+                            "'><a href=#!'><div class='mask rgba-white-slight'></div></a></div><div class='card-body'><!--h5 class='card-title' style='color:black'>Parcel Info</h5--><p class='card-text' style='color:black'>" +
+                            text +
+                            "<br/>Price:" +
+                            currentAsset.sell_order.price +
+                            "</p><a target='new' href='" +
+                            currentAsset.permalink +
+                            "' class='btn btn-mdb-color btn-sm text-white'>OpenSea</a></div></div>";
+
+                        var newTabName = currentAsset.owner.address;
+                        var newTabRoute = "/owner?owner=" + currentAsset.owner.address;
+
+                        var buttonText =
+                            currentAsset.sell_order.for_sale == "1" ? "OpenSea" : "OpenSea";
+                        // popup html based on bootstrap card class
+                        //var popupInfo = "<div class='card " + this.id + "-popup text-center rounded-0' token_id='" + currentAsset.token_id + "' style='min-width:150px;max-width:150px;max-height:250px'><div class='view overlay'><img class='card-img-top rounded-0 d-none d-sm-block' src='https://picsum.photos/id/" + i + "/200/" + h + "'><a href='#!'><div class='mask rgba-white-slight'></div></a></div><div class='card-body'><!--h5 class='card-title' style='color:black'>Parcel Info</h5--><p class='card-text' //style='color:black'>" + text + "<br/>Price:" + currentAsset.sell_order.price + "</p><a target='new' href='" + currentAsset.permalink + "' class='btn btn-mdb-color btn-sm text-white'>OpenSea</a><br/><a _target='new' onclick=navControl.addTab('" + newTabName + "','" + newTabRoute + "',renderLeafletMap) href='#' class='btn btn-mdb-color btn-sm text-white'>Owner</a></div>";
+                        var popupInfo =
+                            "<div class='card " +
+                            this.id +
+                            "-popup  card-main text-center rounded-0 m-1' token_id='" +
+                            currentAsset.token_id +
+                            "' style='min-width:175px;max-width:175px;max-height:325px'><div class='view overlay img-info-card'><a href='#!'><div class='mask rgba-white-slight'></div></a></div><div class='card-body p-2'><!--h5 class='card-title' style='color:black'>Parcel Info</h5--><p class='card-text' style='color:black'>" +
+                            text +
+                            "<br/>Token ID:" +
+                            currentAsset.token_id +
+                            "<br/>Sale price:" +
+                            currentAsset.sell_order.price +
+                            "<br/>Last price:" +
+                            currentAsset.last_sale.last_sale_price +
+                            "</p><a target='_new' href='#'" +
+                            currentAsset.token_id +
+                            "' class='btn btn-light btn-sm text-white m-0 p-0'></a><br/><a target='new' href='" +
+                            currentAsset.permalink +
+                            "?ref=" +
+                            this.affiliateAddress +
+                            "' class='btn btn-mdb-color btn-sm text-white'>OpenSea</a><br/><a _target='new' onclick=mapTalksMap.otherOwnerAddress='" +
+                            currentAsset.owner.address +
+                            "';mapTalksMap.initFilter(mapTalksMap.otherOwnerParcels);mapTalksMap.updateThreePolygonLayer(mapTalksMap.otherOwnerParcels); href='#' class='xbtn xbtn-mdb-color btn-sm text-black'>Owner</a><br/><button type='button' class='close close-info-card' aria-label='Close'><span aria-hidden='true'>×</span></button></div>";
+
+                        // 弹窗
+                        var popupInfoAlt =
+                            "<div class='card card-main m-1 token_id=" + currentAsset.token_id + "'>" +
+                            "<div class='view overlay img-info-card'>" +
+                            "<div class='card-body'>" +
+                            "<div class='card-main-top'>" +
+                            "<div class='title'>" +
+                            (currentAsset.land_name ? currentAsset.land_name : currentAsset.owner.username) +
+                            "<b>: </b>" +
+                            typesStatus +
+                            "</div>" +
+                            "<div class='main-center'>" +
+                            "<span>" + (currentAsset.last_sale.last_sale_price ? currentAsset.last_sale.last_sale_price : "0") + " USDC</span>" +
+                            "<div class='status'>" +
+                            (landStatus && landStatus === landState.OnAuction
+                                ? thisObj.changeLanguageInfo("OnAuction", "경매 중", "競拍中", "Im Bieten", "En licitación", "Dans l'enchère", "In offerta", "競売中", "ในการประมูล", "Đang đấu giá")
+                                : landStatus && landStatus === landState.Earning
+                                    ? thisObj.changeLanguageInfo("Earning", "수익 중", "收益中", "Einnahmen", "En ingresos", "Parmi les gains", "In termini di entrate", "収益取得中", "ในผลประโยชน์", "Trong thu nhập")
+                                    : landStatus && landStatus === landState.Normal
+                                        ? thisObj.changeLanguageInfo("Normal", "정상", "正常", "normal", "Normal", "Normale", "normale", "正常", "ปกติ", "Bình thường")
+                                        : thisObj.changeLanguageInfo("Unavailable", "사용 불가능", "不可用", "Nicht verfügbar", "No disponible", "Non disponible", "Non disponibile", "使用不可", "ไม่สามารถใช้ได้", "Không có sẵn")
+                            ) +
+                            "</div>" +
+                            "</div>" +
+                            "<div class='bottom' style='display: " + (landStatus === landState.OnAuction ? "none" : "block") + "'>" +
+                            (dayTime.length !== 0 ? dayTime.duration : '') +
+                            (dayTime.length !== 0 ? thisObj.changeLanguageInfo("day", "일", "天", "Tag", "Días", "Jours", "giorno", "日", "วัน", "Ngày") : '') +
+                            (dayTime.length !== 0 ? "-" : '') +
+                            (dayTime.length !== 0 ? thisObj.formatTime(dayTime.order_time) : '') +
+                            "</div>" +
+                            "</div>" +
+                            "<div class='card-main-site'>" +
+                            "<div class='left'>" +
+                            "<img style='margin-right:5px;height:15px' src='./images/position-icon.svg' alt='' />" +
+                            thisObj.changeLanguageInfo("Coordinates", "지리적 위치", "地理位置", "geografische Lage", "Ubicación geográfica", "Localisation géographique", "posizione geografica", "所在地", "ตำแหน่งทางภูมิศาสตร์", "Vị trí địa lý") +
+                            "<b style='margin-right: 5px'>: </b>" +
+                            currentAsset.coordinates.x +
+                            "</div>" +
+
+                            "</div>" +
+                            "<div class='card-main-yield'>" +
+                            "<div class='top-1'>" +
+                            "<div class='name'>" + thisObj.changeLanguageInfo("Holder", "소유자", "持有者", "Halter", "Titular", "Titulaire", "titolare", "保有者", "ผู้ถือ", "Trang chủ") + "</div>" +
+                            "<span>" + (newLands.owner && useAddressMemo(newLands.owner, 8) || currentAsset.owner.address && useAddressMemo(currentAsset.owner.address, 8) || thisObj.changeLanguageInfo("Not", "당분간 없음", "暫無", "Derzeit nicht verfügbar", "Aún no", "Pas encore", "Attualmente non disponibile", "なし", "ไม่มี", "Tạm thời không.")) + "</span>" +
+                            "</div>" +
+                            "<div class='top-1'>" +
+                            "<div class='name'>" + thisObj.changeLanguageInfo("Earning rate", "수익률", "收謚率", "Akzeptanzrate posthumer Titel", "Tasa de cierre", "Taux de récupération", "Tasso di accettazione dei titoli postumi", "収益率", "อัตราการตักเตือน", "Thu nhập") + "</div>" +
+                            "<span>" + (currentLands.interest_rate ? Number(currentLands.interest_rate * 100) + "%" : "0") + "</span>" +
+                            "</div>" +
+                            "<div class='top-1'>" +
+                            "<div class='name'>" + thisObj.changeLanguageInfo("Earnings", "수익", "收謚", "Um posthume Titel zu erhalten", "Recoger", "récupération", "Per ricevere titoli postumi", "収益", "เก็บเกี่ยว", "Thu Thụy") + " </div>" +
+                            "<span>" + ((currentAsset.last_sale.last_sale_price * Number(currentLands.interest_rate)) || "0") + " USDC</span>" +
+                            "</div>" +
+                            "</div>" +
+                            "<div class='card-main-token-id'>" +
+                            "<div class='left'>" +
+                            "<div class='title'>" + thisObj.changeLanguageInfo("Blockchain", "블록체인", "區塊鏈", "Blockchain", "Cadena de bloques", "Blockchain", "Blockchain", "ブロックチェーン", "บล็อกเชน", "Trang chủ") + "</div>" +
+                            "<div class='info'>" + "Ethereum" + "</div>" +
+                            "</div>" +
+                            "<div class='center'>" +
+                            "<div class='title'>" + thisObj.changeLanguageInfo("Size", "크기", "大小", "Größe", "Tamaño", "Taille", "dimensione", "サイズ", "ขนาด", "Kích thước") + "</div>" +
+                            "<div class='info'>" + (currentAsset.parcel_size_m ? currentAsset.parcel_size_m : thisObj.changeLanguageInfo("Not", "당분간 없음", "暫無", "Derzeit nicht verfügbar", "Aún no", "Pas encore", "Attualmente non disponibile", "なし", "ไม่มี", "Tạm thời không.")) + "</div>" +
+                            "</div>" +
+                            "<div class='right'>" +
+                            "<div class='title'>Token ID</div>" +
+                            "<div class='info'>" + (currentAsset.token_id ? currentAsset.token_id : thisObj.changeLanguageInfo("Not", "당분간 없음", "暫無", "Derzeit nicht verfügbar", "Aún no", "Pas encore", "Attualmente non disponibile", "なし", "ไม่มี", "Tạm thời không.")) + "</div>" +
+                            "</div>" +
+                            "</div>" +
+                            "<div class='_is_'>" +
+                            "<div onclick='handleRulesBtn()' class='card-main-land-rules'>" + thisObj.changeLanguageInfo("Rules", "규칙", "規 則", "Regel", "Reglas", "Règles", "regola", "ルール", "กฎ", "Quy tắc") + "</div>" +
+                            // "<div  style='display: " + (landStatus === landState.OnAuction ? "flex" : "none") + "' class='land-btn' onclick='handleAuctionBtn()'>" + thisObj.changeLanguageInfo("Bidding", "경매", "競 拍", "Auktion", "Puja", "Enchères", "Asta", "競売", "การประมูล", "Đấu giá") + "</div>" +
+                            "</div>" +
+                            "</div>" +
+                            "</div>";
+
+
+                        if (currentAsset.metadata.name != "") {
+                            var parcelTitle = currentAsset.metadata.name;
+                        } else {
+                            var parcelTitle = "Parcel #" + currentAsset.token_id.toString();
+                        }
+
+                        if (currentAsset.metadata.preview_img != "") {
+                            var previewImg = currentAsset.metadata.preview_img;
+                        } else {
+                            var previewImg = currentAsset.image_preview_url;
+                        }
+                        var parcelInfoCard =
+                            "<!-- Card --><div class='card'><!-- Card image --><div onclick=mapTalksMap.changeView(" +
+                            currentAsset.index +
+                            "); class='view overlay'><img class='card-img-top' src='" +
+                            previewImg +
+                            "' alt='Card image cap'><a href='#!'><div class='mask rgba-white-slight'></div></a></div><!-- Card content -->  <div class='card-body'><!-- Title --><h6 style='cursor:pointer' onclick=mapTalksMap.changeView(" +
+                            currentAsset.index +
+                            "); class='card-title'>" +
+                            parcelTitle +
+                            "</h6><!-- Text --><p class='card-text'>" +
+                            currentAsset.metadata.description +
+                            "</p><!-- Button --><!--a href='#' class='btn btn-primary'>Button</a--></div></div><!-- Card -->";
+                        //var popupInfoAlt = "<nft-card contractAddress='0x913ae503153d9a335398d0785ba60a2d63ddb4e2' tokenId='" + currentAsset.token_id + "'> </nft-card><br/><a _target='new' onclick=mapTalksMap.pinParcel(" + currentAsset.index + "); href='#' class='xbtn xbtn-mdb-color btn-sm text-black'>Pin parcel</a>"
+
+                        //var popupInfoAlt = "<div class='card card-image' style='width:500px;background-image: url(" + currentAsset.image_preview_url + ");'><div class='text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4'><div><h5 class='pink-text'><i class='fas fa-chart-pie'></i> Marketing</h5><h3 class='card-title pt-2'><strong>This is the card title</strong></h3><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem, optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos. Odit sed qui, dolorum!.</p><a class='btn btn-pink'><i class='fas fa-clone left'></i> View project</a></div></div></div>";
+                        // well, hover info html is actually concatenated in one html string for displaying in one scrollable DIV
+
+                        this.hoverInfoHtml += hoverInfo;
+                        // var popupInfoAlt = this.isMobileFn() ? popupInfoAltMobile : popupInfoAltPc
+
+                        this.popupInfos.push(popupInfo);
+                        this.popupInfosAlt.push(popupInfoAlt);
+                        this.parcelInfoCards.push(parcelInfoCard);
+                    }
+                }
+
+                // method : add html based on DOM hook (hooks set by navControl when rendering tab system)
+                addControl(position, html) {
+                    if (position == "topright") {
+                        var el = document.getElementById(this.panelTopRight);
+                        el.innerHTML = html;
+                    }
+                    if (position == "topleft") {
+                        var el = document.getElementById(this.panelTopLeft);
+                        el.innerHTML = html;
+                    }
+                    if (position == "bottomright") {
+                        var el = document.getElementById(this.panelBottomRight);
+                        el.innerHTML = html;
+                    }
+                }
+
+                // method : generic method for setting html content
+                setControlContent(tag, html) {
+                    var el = document.getElementById(tag);
+                    el.innerHTML = html;
+                }
+
+                hideThreeLayer() {
+                    this.threeLayer.hide();
+                }
+
+                showThreeLayer() {
+                    this.threeLayer.show();
+                }
+
+                // method : create the three.js polygon layer with all parcels
+                createThreePolygonLayer() {
+                    // the ThreeLayer to draw buildings
+                    this.threeLayer_p = new maptalks.ThreeLayer("t2", {
+                        forceRenderOnMoving: true,
+                        forceRenderOnRotating: true,
+                        // animation: true
+                    });
+
+                    var thisObj = this;
+                    var meshs = [];
+                    var highlightmaterial = new THREE.MeshBasicMaterial({
+                        color: "blue",
+                        transparent: true,
+                    });
+
+                    this.threeLayer_p.prepareToDraw = function (gl, scene, camera) {
+                        //add lights to scene for (reflective) MeshPhongMaterial
+                        var light = new THREE.DirectionalLight(0xffffff, 0.6);
+                        light.position.set(0, 1, 0).normalize();
+                        scene.add(light);
+
+                        var light2 = new THREE.DirectionalLight(0xffffff, 0.4);
+                        light2.position.set(1, 0, 0).normalize();
+                        scene.add(light2);
+
+                        var ambient_light = new THREE.AmbientLight(0xffffff, 0.85); // soft white light
+                        scene.add(ambient_light);
+
+                        var i = 0;
+
+                        // create mesh for each parcel
+                        thisObj.dataProvider.parcels.forEach(function (g) {
+                            var material = new THREE.MeshBasicMaterial({
+                                color: "rgb(71, 255, 120)",
+                                transparent: false,
+                            });
+
+                            var heightPerLevel = 1;
+                            var levels = 1;
+                            var mesh = thisObj.threeLayer_p.toExtrudePolygon(
+                                maptalks.GeoJSON.toGeometry(g.geometry),
+                                {
+                                    height: 1, //(levels * heightPerLevel),
+                                    topColor: "#fff",
+                                },
+                                material
+                            );
+
+                            mesh.setProperties(g);
+
+                            mesh.setInfoWindow({
+                                content: thisObj.popupInfosAlt[i],
+                                title: "message",
+                                autoOpenOn: "click",
+                                autoCloseOn: "click",
+                                eventsPropagation: false,
+                                animationDuration: 0,
+                                autoPan: false,
+                                custom: true,
+                            });
+
+                            //event test
+                            [
+                                "click",
+                                "mousemove",
+                                "mouseout",
+                                "mouseover",
+                                "mousedown",
+                                "mouseup",
+                                "dblclick",
+                                "contextmenu",
+                            ].forEach(function (eventType) {
+                                var thisObj = this;
+
+                                mesh.on(eventType, async function (e) {
+                                    if (e.type === "mouseout") {
+                                        // return to original color
+                                        this.object3d.material.color.setStyle(
+                                            this.getProperties().saveColor
+                                        );
+                                    }
+                                    if (e.type === "mouseover") {
+                                        // highlight polygon
+                                        //console.log(this.getProperties().sell_order.listed_days_ago);
+                                        this.object3d.material.color.setStyle("rgb(0, 94, 255)"); // blue
+                                    }
+                                    // TODO
+                                    if (e.type === "click") {
+                                        const info = e.target.options.properties
+                                        const landInfo = JSON.stringify({
+                                            price: info.last_sale.last_sale_price,
+                                            token_id: info.token_id,
+                                        });
+                                        try {
+                                            // const result = await (await fetch(fetchUrl)).json()
+                                            localStorage.setItem("landInfo", landInfo);
+                                        } catch (error) {
+                                            console.error("token_id", error);
+                                        }
+                                    }
+                                    if (e.type === "dblclick") {
+                                    }
+                                });
+                            });
+
+                            meshs.push(mesh);
+
+                            i += 1;
+                        });
+                        // add meshs to threelayer
+                        thisObj.threeLayer_p.addMesh(meshs);
+                        thisObj.threeLayer_p.config("animation", true);
+                    };
+
+                    // add threelayer to map
+                    this.threeLayer_p.addTo(this.map);
+
+                    // save meshs
+                    this.polygons = meshs;
+                }
+
+                // method : create the three.js polygon layer with all parcels
+                createThreeStreetViewLayer() {
+                    // the ThreeLayer to draw buildings
+                    this.threeStreetLayer_p = new maptalks.ThreeLayer("t5", {
+                        forceRenderOnMoving: true,
+                        forceRenderOnRotating: true,
+                        // animation: true
+                    });
+
+                    var thisObj = this;
+                    var meshs = [];
+                    var highlightmaterial = new THREE.MeshBasicMaterial({
+                        color: "blue",
+                        transparent: true,
+                    });
+
+                    this.threeStreetLayer_p.prepareToDraw = function (gl, scene, camera) {
+                        //add lights to scene for (reflective) MeshPhongMaterial
+                        var light = new THREE.DirectionalLight(0xffffff, 0.6);
+                        light.position.set(0, 1, 0).normalize();
+                        scene.add(light);
+
+                        var light2 = new THREE.DirectionalLight(0xffffff, 0.4);
+                        light2.position.set(1, 0, 0).normalize();
+                        scene.add(light2);
+
+                        var ambient_light = new THREE.AmbientLight(0xffffff, 0.85); // soft white light
+                        scene.add(ambient_light);
+
+                        var i = 0;
+
+                        // create mesh for each parcel
+                        thisObj.dataProvider.parcels.forEach(function (g) {
+                            var material = new THREE.MeshBasicMaterial({
+                                color: "rgb(71, 255, 120)",
+                                transparent: false,
+                            });
+
+                            var heightPerLevel = 1;
+                            var levels = 1;
+                            var mesh = thisObj.threeStreetLayer_p.toExtrudePolygon(
+                                maptalks.GeoJSON.toGeometry(g.geometry),
+                                {
+                                    height: 2600,
+                                    topColor: "#fff",
+                                },
+                                material
+                            );
+
+                            mesh.setProperties(g);
+
+                            mesh.setInfoWindow({
+                                content: thisObj.popupInfosAlt[i],
+                                title: "message",
+                                autoOpenOn: "click",
+                                autoCloseOn: "click",
+                                eventsPropagation: false,
+                                animationDuration: 0,
+                                autoPan: false,
+                                custom: true,
+                            });
+
+                            //event test
+                            [
+                                "click",
+                                "mousemove",
+                                "mouseout",
+                                "mouseover",
+                                "mousedown",
+                                "mouseup",
+                                "dblclick",
+                                "contextmenu",
+                            ].forEach(function (eventType) {
+                                mesh.on(eventType, function (e) {
+                                    if (e.type === "mouseout") {
+                                        // return to original color
+                                        this.object3d.material.color.setStyle(
+                                            this.getProperties().saveColor
+                                        );
+                                    }
+                                    if (e.type === "mouseover") {
+                                        // highlight polygon
+                                        //console.log(this.getProperties().sell_order.listed_days_ago);
+                                        this.object3d.material.color.setStyle("rgb(0, 94, 255)"); // blue
+                                    }
+                                    if (e.type === "click") {
+                                        //if (thisObj.multiPointArray[this.getProperties().index].getProperties().altitude > 0) { // only update infopanel for extruded parcels (altitude of regular marker > 0)
+                                        //  thisObj.pinnedParcels.push(this); // push the polygon
+                                        //  thisObj.updateInfoPanel();
+                                        //}
+                                    }
+                                    if (e.type === "dblclick") {
+                                    }
+                                });
+                            });
+
+                            meshs.push(mesh);
+
+                            i += 1;
+                        });
+                        // add meshs to threelayer
+                        thisObj.threeStreetLayer_p.addMesh(meshs);
+                        thisObj.threeStreetLayer_p.config("animation", true);
+                    };
+
+                    // add threelayer to map
+                    this.threeStreetLayer_p.addTo(this.map);
+                    //this.threeStreetLayer_p.hide();
+                    // save meshs
+                    this.streetPolygons = meshs;
+                }
+
+                // method : pin parcel
+                pinParcel(i) {
+                    var thisObj = this;
+                    //if (thisObj.multiPointArray[i].getProperties().altitude > 0) { // only update infopanel for extruded parcels (altitude of regular marker > 0)
+                    thisObj.pinnedParcels.push(thisObj.polygons[i]); // push the polygon
+                    thisObj.updateInfoPanel();
+                    //}
+                }
+
+                // method : update the info panel with pinned parcels
+                updateInfoPanel() {
+                    //console.log("updating panel");
+                    var thisObj = this;
+
+                    //empty carousel
+                    var itemCount = $(".c-item").length;
+                    for (var i = 0; i < itemCount; i++) {
+                        thisObj.carousel
+                            .trigger("remove.owl.carousel", [i])
+                            .trigger("refresh.owl.carousel");
+                        //console.log('parcel removed from carousel');
+                    }
+
+                    //document.getElementById(thisObj.listBoxElem).innerHTML = '';
+                    //document.getElementById('carousel').innerHTML = '';
+                    this.pinnedParcels.forEach((mesh) => {
+                        var parcel = mesh.getProperties();
+                        //document.getElementById(thisObj.listBoxElem).innerHTML += thisObj.popupInfos[parcel.index];
+                        //thisObj.carousel.trigger('add.owl.carousel', ["<div class='carousel-item'>" + thisObj.popupInfos[parcel.index] + "</div>"]).trigger('refresh.owl.carousel');
+                        thisObj.carousel
+                            .trigger("add.owl.carousel", [
+                                "<div class='c-item'>" +
+                                thisObj.popupInfos[parcel.index] +
+                                "</div>",
+                            ])
+                            .trigger("refresh.owl.carousel");
+                    });
+
+                    // register eventlistener on close button
+                    document.querySelectorAll(".close-info-card").forEach((element) => {
+                        element.addEventListener("click", (event) => {
+                            var token_id = event.target
+                                .closest(".card")
+                                .getAttribute("token_id");
+                            thisObj.pinnedParcels = thisObj.pinnedParcels.filter((parcel) => {
+                                return parcel.getProperties().token_id != token_id;
+                            });
+                            thisObj.updateInfoPanel();
+                        });
+                    });
+
+                    document.querySelectorAll(".img-info-card").forEach((element) => {
+                        element.addEventListener("mouseover", (event) => {
+                            var token_id = event.target
+                                .closest(".card")
+                                .getAttribute("token_id");
+                            var hoverParcel = thisObj.pinnedParcels.filter((parcel) => {
+                                return parcel.getProperties().token_id == token_id;
+                            });
+                            //console.log(hoverParcel[0]);
+                            hoverParcel[0].object3d.material.color.setStyle("rgb(0, 94, 255)"); // blue
+                            //var highlightmaterial = new THREE.MeshBasicMaterial({ color: 'blue', transparent: true });
+                            //hoverParcel[0].setSymbol(highlightmaterial);
+                        });
+
+                        element.addEventListener("mouseout", (event) => {
+                            var token_id = event.target
+                                .closest(".card")
+                                .getAttribute("token_id");
+                            var hoverParcel = thisObj.pinnedParcels.filter((parcel) => {
+                                return parcel.getProperties().token_id == token_id;
+                            });
+                            //console.log(hoverParcel[0]);
+                            hoverParcel[0].object3d.material.color.setStyle(
+                                hoverParcel[0].getProperties().saveColor
+                            );
+                            //var highlightmaterial = new THREE.MeshBasicMaterial({ color: 'blue', transparent: true });
+                            //hoverParcel[0].setSymbol(highlightmaterial);
+                        });
+                    });
+
+                    // Force tab with pinned parcels to open
+                    var pinnedParcelsTab = thisObj.id + "-tab1";
+                    $("#" + pinnedParcelsTab).tab("show");
+                }
+
+                // method: filter values are view specific and saved per view, init them here
+                initFilter(view) {
+                    if (view.filter) {
+                        if (view.filter.customRangeMax) {
+                            $("#customRangeMax").attr("min", view.filter.customRangeMax.min);
+                            $("#customRangeMax").attr("max", view.filter.customRangeMax.max);
+                            $("#customRangeMax").val(view.filter.customRangeMax.value);
+                            this.filterScaleMax = parseInt(view.filter.customRangeMax.value);
+                            $("#range-label-max").html(
+                                "Scale/Range Max = " + view.filter.customRangeMax.value
+                            );
+                        }
+                        if (view.filter.customRangeMin) {
+                            $("#customRangeMin").attr("min", view.filter.customRangeMin.min);
+                            $("#customRangeMin").attr("max", view.filter.customRangeMin.max);
+                            $("#customRangeMin").val(view.filter.customRangeMin.value);
+                            this.filterScaleMin = parseInt(view.filter.customRangeMin.value);
+                            $("#range-label-min").html(
+                                "Scale/Range Min = " + view.filter.customRangeMin.value
+                            );
+                        }
+                    }
+                }
+
+                // method : update the polygons in terms of height and color based on passed view object
+                updateThreePolygonLayer(view) {
+                    //this.threeStreetLayer_p.hide();
+                    //this.threeLayer_p.show();
+
+                    var thisObj = this;
+                    thisObj.currentView = view;
+                    var ownerColors = {};
+                    var i = 0;
+                    var startValue = 50;
+
+                    //thisObj.initFilter(view);
+
+                    $("#currentView").html(view.name);
+
+                    this.polygons.forEach((mesh) => {
+                        var currentAsset = mesh.getProperties();
+
+                        // console.log(currentAsset);
+
+                        var value = currentAsset;
+                        for (var index in view.param1) {
+                            var value = value[view.param1[index]];
+                        }
+
+                        // determine marker altitude based on how many days ago the parcel was last sold
+                        // var param1 = Math.floor(currentAsset.last_sale.days_ago);
+                        //var param1 = Math.floor(value);
+                        var param1 = Math.round(value * 100) / 100;
+
+                        //override max value with slider setting
+                        view.param1_max = thisObj.filterScaleMax;
+                        view.param1_min = thisObj.filterScaleMin;
+
+                        //cap the max
+                        var adjusted_param1 =
+                            param1 > view.param1_max ? view.param1_max : param1;
+                        adjusted_param1 =
+                            adjusted_param1 < view.param1_min
+                                ? view.param1_min
+                                : adjusted_param1;
+                        //var adjusted_param1 = (param1 > thisObj.filterScaleMax ? thisObj.filterScaleMax : param1);
+
+                        // for requested parcels (in url) always use maximum height
+                        if (view.id == "requestedparcel" || view.id == "category") {
+                            adjusted_param1 = view.param1_max;
+                        }
+
+                        var alt_min = 100;
+                        var alt_max = 15000;
+                        var alt = new HelperFunctions().convertRange(
+                            adjusted_param1,
+                            [view.param1_min, view.param1_max],
+                            [alt_max, alt_min]
+                        );
+
+                        var marker_height_min = 250;
+                        var marker_height_max = 15000 + thisObj.markerHeightOffset;
+                        if (view.marker_height == "proportional") {
+                            var marker_height = new HelperFunctions().convertRange(
+                                adjusted_param1,
+                                [view.param1_min, view.param1_max],
+                                [marker_height_min, marker_height_max]
+                            );
+                        } else {
+                            var marker_height = new HelperFunctions().convertRange(
+                                adjusted_param1,
+                                [view.param1_min, view.param1_max],
+                                [marker_height_max, marker_height_min]
+                            );
+                        }
+                        marker_height = marker_height;
+
+                        //var color = new HelperFunctions().colorGradient([168, 50, 50],[94, 168, 50],(marker_height/marker_height_max));
+                        var color = new HelperFunctions().colorGradient(
+                            [252, 3, 3],
+                            [194, 252, 3],
+                            marker_height / marker_height_max
+                        );
+                        var color2 = thisObj
+                            .colorScale2((marker_height / marker_height_max) * 100)
+                            .css();
+
+                        //set the additional condition whether parcels with values highed than the scale's max value should be shown or nor
+                        if (thisObj.filterScaleCutOff) {
+                            view.add_condition = view.condition_template;
+                        } else {
+                            view.add_condition = "1==1";
+                        }
+
+                        // console.log(color);
+                        // console.log(color2);
+
+                        if (
+                            eval(view.show_condition) &&
+                            eval(view.add_condition) &&
+                            thisObj.filter_size.includes(currentAsset.parcel_size) &&
+                            thisObj.filter_location.includes(currentAsset.parcel_location) &&
+                            thisObj.filter_symbol.includes(eval(view.symbol))
+                        ) {
+                            //console.log(eval(view.symbol));
+                            // distinct colors for land owners
+                            if (view.name == "Land owners") {
+                                // console.log('ownerColors: ', ownerColors);
+                                // console.log('currentAsset.owner.address: ', currentAsset.owner.address);
+                                if (currentAsset.owner.address in ownerColors) {
+                                    var color2 = ownerColors[currentAsset.owner.address];
+                                } else {
+                                    var color2 = thisObj.colorMap[i];
+                                    ownerColors[currentAsset.owner.address] = color2;
+                                    i += 50;
+                                    if (i >= 250) {
+                                        startValue = Math.floor(startValue / 2);
+                                        i = startValue;
+                                    }
+                                }
+                                // console.log('color2: ', color2);
+                            }
+                            var specularColor = new THREE.Color(0.25, 0.35, 0.25);
+                            if (thisObj.materialMode == 1) {
+                                var material = new THREE.MeshBasicMaterial({
+                                    color: color2,
+                                    opacity: 1,
+                                    transparent: true,
+                                    wireframe: false,
+                                });
+                            }
+                            if (thisObj.materialMode == 2) {
+                                var material = new THREE.MeshPhongMaterial({
+                                    color: color2,
+                                    opacity: 1,
+                                    transparent: true,
+                                    specular: specularColor,
+                                    reflectivity: 0.5,
+                                    shininess: 64,
+                                    wireframe: false,
+                                });
+                            }
+                            if (thisObj.wireFrame == 1) {
+                                material.wireframe = true;
+                            } else {
+                                material.wireframe = false;
+                            }
+
+                            mesh.object3d.scale.z = marker_height;
+                            //mesh.object3d.geometry.scale(1,1,2);
+                            mesh.setSymbol(material);
+                            currentAsset.saveColor = mesh.object3d.material.color.getStyle();
+                            //var tt = "#" + currentAsset.token_id + " | " + param1 + " " + eval(view.label_text);
+                            var tt =
+                                "#" +
+                                currentAsset.token_id +
+                                " | " +
+                                eval(view.label_value) +
+                                " " +
+                                eval(view.label_text);
+                        } else {
+                            mesh.object3d.scale.z = 1;
+                            if (
+                                currentAsset.owner.address ==
+                                "0xb98cdacd006b9d47c37ca63cc86f916ee23fc550"
+                            ) {
+                                mesh.object3d.material.color.setStyle(
+                                    thisObj.somniumParcelColor.css()
+                                );
+                            } else {
+                                if (currentAsset.sell_order.for_sale == 1) {
+                                    mesh.object3d.material.color.setStyle(
+                                        thisObj.memberParcelForSale.css()
+                                    );
+                                } else {
+                                    mesh.object3d.material.color.setStyle(
+                                        thisObj.memberParcelNotForSale.css()
+                                    );
+                                }
+                            }
+                            currentAsset.saveColor = mesh.object3d.material.color.getStyle();
+                            var tt = "Parcel #" + currentAsset.token_id;
+                        }
+
+                        // init tooltip
+                        mesh.setToolTip(tt, {
+                            showTimeout: 0,
+                            eventsPropagation: true,
+                            dx: 20,
+                            dy: 0,
+                        });
+                    });
+                }
+
+                // method : textures on polygons
+                streetView(view) {
+                    this.threeLayer_p.hide();
+                    this.threeStreetLayer_p.show();
+
+                    var loader = new THREE.TextureLoader();
+                    //loader.setPath( 'images/' );
+
+                    var textureCube = loader.load([
+                        "images/side1.jpg",
+                        "images/side2.jpg",
+                        "images/side3.jpg",
+                        "images/side4.jpg",
+                        "images/side4.jpg",
+                        "images/side5.jpg",
+                    ]);
+
+                    var materials1 = [];
+                    var repeatX = 400 / 4096;
+                    var repeatY = 569 / 8192;
+                    // load a resource
+                    var texture_1 = loader.load("images/side1.jpg", function (texture) {
+                        // in this example we create the material when the texture is loaded
+                        //texture_1.wrapS = THREE.RepeatWrapping;
+                        //texture_1.wrapT = THREE.RepeatWrapping;
+                        texture_1.wrapS = THREE.RepeatWrapping;
+                        texture_1.wrapT = THREE.RepeatWrapping;
+                        texture_1.repeat.set(repeatX, repeatX);
+                        //texture_1.repeat.x.set = repeatX;
+                        //texture_1.repeat.y.set = repeatY;
+                        //texture_1.offset.x = (repeatX - 1) / 2 * -1
+                        //texture_c.rotation = Math.PI / 4;
+
+                        var texture_2 = loader.load("images/side4.jpg", function (texture) {
+                            texture_2.wrapS = THREE.RepeatWrapping;
+                            texture_2.wrapT = THREE.RepeatWrapping;
+                            texture_2.repeat.set(repeatX, repeatX);
+
+                            var texture_3 = loader.load("images/green.png", function (texture) {
+                                texture_3.rotation = Math.PI / 1;
+                                texture_3.wrapS = THREE.RepeatWrapping;
+                                texture_3.wrapT = THREE.RepeatWrapping;
+                                texture_3.repeat.set(repeatX, repeatY);
+
+                                materials1.push(
+                                    new THREE.MeshBasicMaterial({
+                                        depthTest: true,
+                                        alphaTest: 0.5,
+                                        depthWrite: true,
+                                        side: THREE.FrontSide,
+                                        map: texture_1,
+                                    })
+                                );
+                                materials1.push(
+                                    new THREE.MeshBasicMaterial({
+                                        depthTest: true,
+                                        alphaTest: 0.5,
+                                        depthWrite: true,
+                                        side: THREE.FrontSide,
+                                        map: texture_2,
+                                    })
+                                );
+                                materials1.push(
+                                    new THREE.MeshBasicMaterial({
+                                        depthTest: true,
+                                        alphaTest: 0.5,
+                                        depthWrite: true,
+                                        side: THREE.FrontSide,
+                                        map: texture_3,
+                                    })
+                                );
+                                materials1.push(
+                                    new THREE.MeshBasicMaterial({
+                                        depthTest: true,
+                                        alphaTest: 0.5,
+                                        depthWrite: true,
+                                        side: THREE.FrontSide,
+                                        map: texture_3,
+                                    })
+                                );
+                                materials1.push(
+                                    new THREE.MeshBasicMaterial({
+                                        depthTest: true,
+                                        alphaTest: 0.5,
+                                        depthWrite: true,
+                                        side: THREE.FrontSide,
+                                        map: texture_3,
+                                    })
+                                );
+                                materials1.push(
+                                    new THREE.MeshBasicMaterial({
+                                        depthTest: true,
+                                        alphaTest: 0.5,
+                                        depthWrite: true,
+                                        side: THREE.FrontSide,
+                                        map: texture_3,
+                                    })
+                                );
+
+                                //materials1.push(new THREE.MeshBasicMaterial({color: 0x00ffff}));
+                                //materials1.push(new THREE.MeshBasicMaterial({color: 0x0000ff}));
+                                //materials1.push(new THREE.MeshBasicMaterial({color: 0x000000}));
+                            });
+                        });
+                    });
+
+                    var thisObj = this;
+                    thisObj.currentView = view;
+                    var ownerColors = {};
+                    var i = 0;
+                    var startValue = 50;
+
+                    $("#currentView").html(view.name);
+
+                    this.streetPolygons.forEach((mesh) => {
+                        var currentAsset = mesh.getProperties();
+
+                        var value = currentAsset;
+                        for (var index in view.param1) {
+                            var value = value[view.param1[index]];
+                        }
+
+                        // determine marker altitude based on how many days agi the parcel was last sold
+                        // var param1 = Math.floor(currentAsset.last_sale.days_ago);
+                        //var param1 = Math.floor(value);
+                        var param1 = Math.round(value * 100) / 100;
+
+                        //override max value with slider setting
+                        view.param1_max = thisObj.filterScaleMax;
+                        view.param1_min = thisObj.filterScaleMin;
+
+                        //cap the max
+                        var adjusted_param1 =
+                            param1 > view.param1_max ? view.param1_max : param1;
+                        adjusted_param1 =
+                            adjusted_param1 < view.param1_min
+                                ? view.param1_min
+                                : adjusted_param1;
+                        //var adjusted_param1 = (param1 > thisObj.filterScaleMax ? thisObj.filterScaleMax : param1);
+
+                        // for requested parcels (in url) always use maximum height
+                        if (view.name == "Requested Parcel") {
+                            adjusted_param1 = view.param1_max;
+                        }
+
+                        var alt_min = 100;
+                        var alt_max = 15000;
+                        var alt = new HelperFunctions().convertRange(
+                            adjusted_param1,
+                            [view.param1_min, view.param1_max],
+                            [alt_max, alt_min]
+                        );
+
+                        var marker_height_min = 250;
+                        var marker_height_max = 15000 + thisObj.markerHeightOffset;
+                        if (view.marker_height == "proportional") {
+                            var marker_height = new HelperFunctions().convertRange(
+                                adjusted_param1,
+                                [view.param1_min, view.param1_max],
+                                [marker_height_min, marker_height_max]
+                            );
+                        } else {
+                            var marker_height = new HelperFunctions().convertRange(
+                                adjusted_param1,
+                                [view.param1_min, view.param1_max],
+                                [marker_height_max, marker_height_min]
+                            );
+                        }
+                        marker_height = marker_height;
+
+                        //var color = new HelperFunctions().colorGradient([168, 50, 50],[94, 168, 50],(marker_height/marker_height_max));
+                        var color = new HelperFunctions().colorGradient(
+                            [252, 3, 3],
+                            [194, 252, 3],
+                            marker_height / marker_height_max
+                        );
+                        var color2 = thisObj
+                            .colorScale2((marker_height / marker_height_max) * 100)
+                            .css();
+
+                        //set the additional condition whether parcels with values highed than the scale's max value should be shown or nor
+                        if (thisObj.filterScaleCutOff) {
+                            view.add_condition = view.condition_template;
+                        } else {
+                            view.add_condition = "1==1";
+                        }
+                        if (
+                            eval(view.show_condition) &&
+                            eval(view.add_condition) &&
+                            thisObj.filter_size.includes(currentAsset.parcel_size) &&
+                            thisObj.filter_location.includes(currentAsset.parcel_location)
+                        ) {
+                            // distinct colors for land owners
+                            if (view.name == "Land owners") {
+                                if (currentAsset.owner.address in ownerColors) {
+                                    var color2 = ownerColors[currentAsset.owner.address];
+                                } else {
+                                    var color2 = thisObj.colorMap[i];
+                                    ownerColors[currentAsset.owner.address] = color2;
+                                    i += 50;
+                                    if (i >= 250) {
+                                        startValue = Math.floor(startValue / 2);
+                                        i = startValue;
+                                    }
+                                }
+                                //console.log(color2);
+                            }
+
+                            //mesh.object3d.scale.z = 2000; //marker_height;
+                            //mesh.object3d.geometry.scale(1,1,2);
+                            //mesh.object3d.scale.z = 1;
+                            //mesh.options.height = 8000;
+                            //mesh.setSymbol(material);
+                            //mesh.object3d.geometry.clearGroups();
+
+                            //mesh.object3d.geometry.addGroup( 1, 6, 0 );
+                            mesh.object3d.geometry.clearGroups();
+                            //mesh.object3d.geometry.addGroup( 6, 6, 1 );
+                            mesh.object3d.geometry.addGroup(18, 6, 2);
+                            mesh.object3d.geometry.addGroup(12, 6, 3);
+                            mesh.object3d.geometry.addGroup(24, 6, 4);
+                            mesh.object3d.geometry.addGroup(30, 6, 5);
+
+                            mesh.object3d.material = materials1;
+                            //mesh.object3d.material = materials1;
+                            // switch to multi-material
+
+                            mesh.object3d.material.needsUpdate = true;
+
+                            //mesh.object3d.material.map.repeat.set( 0.1, 0.1 );
+                            console.log(mesh.object3d);
+                            //currentAsset.saveColor = mesh.object3d.material.color.getStyle();
+                            var tt =
+                                "#" +
+                                currentAsset.token_id +
+                                " | " +
+                                param1 +
+                                " " +
+                                eval(view.label_text);
+                        } else {
+                            mesh.object3d.scale.z = 0;
+                            if (
+                                currentAsset.owner.address ==
+                                "0xb98cdacd006b9d47c37ca63cc86f916ee23fc550"
+                            ) {
+                                mesh.object3d.material.color.setStyle(
+                                    thisObj.somniumParcelColor.css()
+                                );
+                            } else {
+                                if (currentAsset.sell_order.for_sale == 1) {
+                                    mesh.object3d.material.color.setStyle(
+                                        thisObj.memberParcelForSale.css()
+                                    );
+                                } else {
+                                    mesh.object3d.material.color.setStyle(
+                                        thisObj.memberParcelNotForSale.css()
+                                    );
+                                }
+                            }
+                            //mesh.object3d.material.color.setStyle( "rgb(219, 219, 219)");
+                            //mesh.object3d.material.color.setStyle( "rgb(71, 255, 120)");
+                            currentAsset.saveColor = mesh.object3d.material.color.getStyle();
+                            var tt = "Parcel #" + currentAsset.token_id;
+                            //mesh.hide();
+                        }
+
+                        // init tooltip
+                        mesh.setToolTip(tt, {
+                            showTimeout: 0,
+                            eventsPropagation: true,
+                            dx: 20,
+                            dy: 0,
+                        });
+                    });
+                }
+
+                // method : create MapTalksLayer. This one is currently only used to show 'height' markers for parcels with highest and lowest altitude
+                createLayers() {
+                    var thisObj = this;
+                    this.multiPointArray = [];
+                    var index = 0;
+                    for (index in this.dataProvider.parcels) {
+                        var currentAsset = this.dataProvider.parcels[index];
+                        var point = [currentAsset.coordinates.x, currentAsset.coordinates.y];
+
+                        var marker = new maptalks.Marker(point, {
+                            shadowBlur: 0,
+                            shadowColor: "black",
+                            symbol: {},
+                            properties: currentAsset,
+                        })
+                            .on("mousedown", function (e) {
+                                //e.target.openInfoWindow();
+                            })
+                            .on("mouseout", function (e) { });
+
+                        //marker.setInfoWindow({
+                        //  'title'       : 'Info',
+                        //  'content'     : this.popupInfos[index],
+                        //  'autoPan'     : true,
+                        //  '_width'      : 300,
+                        //  '_minHeight'  : 120,
+                        //  'custom'      : true,
+                        //  'autoOpenOn'  : 'click',
+                        //  'autoCloseOn' : 'mouseover'
+                        //});
+
+                        this.multiPointArray.push(marker);
+                    }
+
+                    this.layerOne = new maptalks.VectorLayer(
+                        "vector",
+                        this.multiPointArray,
+                        {
+                            enableAltitude: true,
+                            altitudeProperty: "altitude",
+                            drawAltitude: {
+                                lineWidth: 0,
+                                lineColor: "#000",
+                            },
+                        }
+                    ).addTo(this.map);
+
+                    // show parcels for sale
+                    //this.showView(this.onSaleAll);
+                    //console.log('done');
+                }
+
+                showView(view) {
+                    //console.log(view);
+
+                    var thisObj = this;
+                    //console.log(thisObj.ownerAddress);
+
+                    this.layerOne.forEach(function (feature) {
+                        var currentAsset = feature.getProperties();
+
+                        var value = currentAsset;
+                        for (var index in view.param1) {
+                            var value = value[view.param1[index]];
+                        }
+                        //console.log(value);
+
+                        // determine marker altitude based on how many days ago the parcel was last sold
+                        // var param1 = Math.floor(currentAsset.last_sale.days_ago);
+                        //var param1 = Math.floor(value);
+                        var param1 = Math.round(value * 100) / 100;
+                        currentAsset.param1 = param1;
+
+                        var adjusted_param1 =
+                            param1 > view.param1_max ? view.param1_max : param1;
+
+                        var alt_min = 100;
+                        var alt_max = 15000;
+                        var alt = new HelperFunctions().convertRange(
+                            adjusted_param1,
+                            [view.param1_min, view.param1_max],
+                            [alt_max, alt_min]
+                        );
+                        //var alt = new HelperFunctions().convertRange( adjusted_parcel_count, [ 0, 100 ], [ alt_min, alt_max ] );
+
+                        var marker_height_min = 5;
+                        var marker_height_max = 150;
+                        if (view.marker_height == "proportional") {
+                            var marker_height = new HelperFunctions().convertRange(
+                                adjusted_param1,
+                                [view.param1_min, view.param1_max],
+                                [marker_height_min, marker_height_max]
+                            );
+                        } else {
+                            var marker_height = new HelperFunctions().convertRange(
+                                adjusted_param1,
+                                [view.param1_min, view.param1_max],
+                                [marker_height_max, marker_height_min]
+                            );
+                        }
+                        currentAsset.altitude = marker_height * 105;
+
+                        var color = new HelperFunctions().colorGradient(
+                            [168, 50, 50],
+                            [94, 168, 50],
+                            marker_height / marker_height_max
+                        );
+                        //var color = new HelperFunctions().colorGradient([215, 66, 245],[94, 168, 50],(marker_height/marker_height_max));
+                        const parcel_size = {
+                            "S": 30,
+                            "M": 25,
+                            "XL": 20,
+                            "A": 15,
+                            "B": 10,
+                            "C": 5
+                        }[currentAsset.parcel_size] || 20;
+
+                        var marker_width = parcel_size
+
+                        //if (currentAsset.num_sales > 0 && param1 <= view.param1_cutoff) {
+                        if (eval(view.show_condition)) {
+                            feature.setSymbol({});
+                            feature.show();
+                        } else {
+                            feature.setSymbol({});
+                            feature.getProperties().altitude = 0;
+                            feature.hide();
+                        }
+                    });
+
+                    // find markers with highest and lowest altitudes
+
+                    //var maxFeature = thisObj.multiPointArray.filter(m => {return m.getProperties().altitude > 0}).reduce((max, feature) => max.getProperties().param1 > feature.getProperties().param1 ? max : feature);
+                    //var minFeature = thisObj.multiPointArray.filter(m => {return m.getProperties().altitude > 0;}).reduce((min, feature) => min.getProperties().param1 < feature.getProperties().param1 ? min : feature);
+                    //maxFeature.setSymbol(
+                    //  {
+                    //    'markerFile'   : 'images/arrow-red.png',
+                    //    'markerWidth'  : 40,
+                    //    'markerHeight' : 40,
+                    //    'markerDx'     : 0,
+                    //    'markerDy'     : 0,
+                    //    'markerOpacity': 1
+                    //  });
+                    //minFeature.setSymbol(
+                    //  {
+                    //    'markerFile'   : 'images/arrow-red.png',
+                    //    'markerWidth'  : 40,
+                    //    'markerHeight' : 40,
+                    //    'markerDx'     : 0,
+                    //    'markerDy'     : 0,
+                    //    'markerOpacity': 1
+                    //  });
+                }
+
+                initScrollContainer() {
+                    //new PerfectScrollbar('#' + this.id + '-scroll-container');
+                }
+
+                findMarkerById(item_id) {
+                    var marker = 0;
+                    for (marker in this.allMarkers) {
+                        if (this.allMarkers[marker].token_id == item_id) {
+                            return this.allMarkers[marker];
+                        }
+                    }
+                }
+            }
+
+            // main function to render a MapTalksMap instance and all related info
+            function renderMapTalksMap(mapTalksMap) {
+                mapTalksMap.initMap(mapTalksMap.id);
+
+                // prepare info and popup data
+                mapTalksMap.prepareMapData();
+
+                // draw layer with parcels
+                mapTalksMap.createThreePolygonLayer();
+                //mapTalksMap.createThreeStreetViewLayer();
+
+                // create layers
+                mapTalksMap.createLayers();
+            }
+
+
+            // Execute when page has loaded
+            function windowOnLoad() {
+                window.dataProvider = new DataProvider();
+
+                window.mapTalksMap = new MapTalksMap(
+                    "map1",
+                    "Somnium Space Map",
+                    "onsale",
+                    "tab1",
+                    renderMapTalksMap,
+                    dataProvider,
+                    false
+                );
+
+                window.mapsContainer = new MapsContainer();
+                mapsContainer.maps.push(mapTalksMap);
+
+                var promise = dataProvider.requestAllSomniumParcelsOpenSea();
+                promise
+                    .then(function (result) {
+                        // console.log("Info >> dataProvider status >> " + dataProvider.statusCodes[dataProvider.status]);
+
+                        window.navControl = new NavControl(mapsContainer);
+                        window.navControl.render();
+
+                        $("#main-spinner").hide();
+
+                        // execute when document/map fully loaded
+                        $(document).ready(function () {
+                            // init some views
+                            window.mapTalksMap.initialView =
+                                window.mapTalksMap.dataProvider.filters.filter(function (filter) {
+                                    return filter.showOnLoad === "1";
+                                })[0];
+                            window.mapTalksMap.requestedParcelView =
+                                window.mapTalksMap.dataProvider.filters.filter(function (filter) {
+                                    return filter.id === "requestedparcel";
+                                })[0];
+                            window.mapTalksMap.requestedCategoryView =
+                                window.mapTalksMap.dataProvider.filters.filter(function (filter) {
+                                    return filter.id === "category";
+                                })[0];
+                            window.mapTalksMap.ownerParcels =
+                                window.mapTalksMap.dataProvider.filters.filter(function (filter) {
+                                    return filter.id === "myparcels";
+                                })[0];
+                            window.mapTalksMap.otherOwnerParcels =
+                                window.mapTalksMap.dataProvider.filters.filter(function (filter) {
+                                    return filter.id === "ownerparcels";
+                                })[0];
+
+                            if (window.mapTalksMap.requestedParcel != 0) {
+                                window.mapTalksMap.currentView =
+                                    window.mapTalksMap.requestedParcelView;
+                            } else {
+                                window.mapTalksMap.currentView = window.mapTalksMap.initialView;
+                            }
+
+                            // render map
+                            window.mapTalksMap.initFilter(window.mapTalksMap.currentView);
+                            window.mapTalksMap.updateThreePolygonLayer(
+                                window.mapTalksMap.currentView
+                            );
+
+                            // if parcel was requested, pin it and focus on parcel
+                            if (window.mapTalksMap.requestedParcel != 0) {
+                                var id = window.mapTalksMap.requestedParcel;
+                                var parcelIndex =
+                                    window.mapTalksMap.dataProvider.parcels.findIndex(
+                                        (parcel) => parcel.token_id == id
+                                    );
+                                //window.mapTalksMap.pinParcel(parcelIndex);
+                                $("#searchResults").html(
+                                    "<div class='text-center'><i style='cursor:pointer' onclick=$('#searchResults').html(''); class='fas fa-window-minimize'></i></div>" +
+                                    window.mapTalksMap.parcelInfoCards[parcelIndex]
+                                );
+                                $("#collapseExample").collapse("show");
+                                window.mapTalksMap.changeView(parcelIndex);
+                            }
+                        });
+                    })
+                    .catch(function (reject) {
+                        // console.log("Error: " + reject);
+                        // console.log("Info >> dataProvider status >> " + dataProvider.statusCodes[dataProvider.status]);
+
+                        $("#main-spinner").hide();
+                        $("#data-error").show();
+                    });
+
+                // -----------------------------
+                // NavControl class
+                // -----------------------------
+                class NavControl {
+                    constructor(mapsContainer) {
+                        this.mapsContainer = mapsContainer;
+                        this.navRoot = $("#tabs");
+                        this.navContent = $("#tabcontent");
+                    }
+
+                    render() {
+                        var index = 0;
+                        for (index in this.mapsContainer.maps) {
+                            var i = index;
+                            var map = this.mapsContainer.maps[index];
+
+                            $("#mapContainer").html(
+                                "<div id='" +
+                                map.id +
+                                "' style='width:100vw;height:100vh;margin-left:auto;margin-right:auto;margin-bottom:0px;background:black;_background:#24454E'></div><div id='status-" +
+                                map.id +
+                                "'></div>"
+                            );
+
+                            map.render();
+                        }
+                        $("#" + this.mapsContainer.maps[0].selector).tab("show");
+                    }
+
+                    connectMetaMask() {
+                        var user_account = "";
+                        (async () => {
+                            // Modern dapp browsers...
+                            if (window.ethereum) {
+                                window.web3 = new Web3(window.ethereum);
+                                try {
+                                    // Request account access if needed
+                                    await window.ethereum.enable();
+                                } catch (error) {
+                                    // User denied account access...
+                                }
+                            }
+                            // Legacy dapp browsers...
+                            else if (window.web3) {
+                                window.web3 = new Web3(web3.currentProvider);
+                            }
+                            // Non-dapp browsers...
+                            else {
+                                console.log(
+                                    "Non-Ethereum browser detected. You should consider trying MetaMask!"
+                                );
+                            }
+                            user_account = window.web3.eth.accounts[0];
+                            this.mapsContainer.maps.map(function (map) {
+                                map.metamask(user_account);
+                            });
+                            var accountInterval = setInterval(function () {
+                                if (window.web3.eth.accounts[0] !== user_account) {
+                                    user_account = window.web3.eth.accounts[0];
+                                    this.mapsContainer.maps.map(function (map) {
+                                        map.metamask(user_account);
+                                    });
+                                }
+                            }, 100);
+                        })();
+                    }
+                }
+
+                let landSelectHTML = `<option value="none" selected disabled hidden>${window.mapTalksMap.changeLanguageInfo("Select", "선택", "選擇", "Wählen Sie", "Seleccione", "Sélectionner", " Selezionare", "選択", "เลือก", "Lựa chọn")}</option>`;
+                for (const key in TypesStatusMap) {
+                    if (Object.hasOwnProperty.call(TypesStatusMap, key)) {
+                        landSelectHTML += `
+                            <option value="${key}">${TypesStatusMap[key]}</option>
+                        `;
+                    }
+                }
+                QuickBuySelect.append(landSelectHTML);
+            }
+
+            // following stacks passed function onto existing window.onload
+            function addLoadEvent(func) {
+                var oldonload = window.onload;
+                if (typeof window.onload != "function") {
+                    window.onload = func;
+                } else {
+                    window.onload = function () {
+                        if (oldonload) {
+                            oldonload();
+                        }
+                        func();
+                    };
+                }
+            }
+
+            addLoadEvent(windowOnLoad);
+        </script>
+    </main>
+</body>
+
+</html>

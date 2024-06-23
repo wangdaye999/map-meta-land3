@@ -1,0 +1,532 @@
+.card-main {
+    width: 70vw;
+    height: 100%;
+    padding: 2px;
+    border-radius: 10px !important;
+    background-color: #fcd436 !important;
+}
+
+.card-main .card-body {
+    background-color: #000000e0;
+    border-radius: 10px !important;
+    color: #fff;
+    padding-block: 15px !important;
+    padding-inline: 20px !important;
+}
+
+main {
+    position: relative;
+}
+
+.map-info-desc {
+    width: 100%;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    z-index: 91;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.map-info-desc .Desc_I_Svg {
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+}
+
+.map-info-desc .info {
+    width: 260px;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background: #000000b2;
+    border-radius: 20px;
+    padding: 7px 10px;
+}
+
+.map-info-desc .info .Desc_Voice_Svg {
+    width: 20px;
+    height: 20px;
+}
+
+.map-info-desc .info #div_text {
+    width: 100%;
+    display: flex !important;
+    color: #fff;
+    font-size: 14px;
+    padding-left: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* white-space: nowrap; */
+}
+
+.card-main-top,
+.card-main-site,
+.card-main-yield,
+.card-main-token-id,
+.card-main-land-rules {
+    margin-bottom: 10px;
+}
+
+.card-main-top {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fcd436 !important;
+    font-size: 13px;
+}
+
+.card-main-top .main-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff !important;
+    padding: 10px 0;
+}
+
+.card-main-top .main-center span {
+    font-size: 20px;
+}
+
+.card-main-top .main-center .status {
+    font-size: 12px !important;
+    color: #fcd436 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    border: 1px solid #fcd436 !important;
+    border-radius: 4px;
+    padding: 3px 5px;
+    transform: scale(0.88);
+}
+
+.card-main-site {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-main-site .left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-main-yield .top-1 {
+    color: #999 !important;
+    font-size: 12px !important;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.card-main-yield .top-1 .name {
+    margin-right: 8px;
+}
+
+.card-main-yield .top-1 span {
+    color: #fcd436 !important;
+    font-size: 13px !important;
+}
+
+.card-main-token-id {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-main-token-id .left,
+.card-main-token-id .center,
+.card-main-token-id .right {
+    color: #999 !important;
+    font-size: 12px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-main-token-id .left .info,
+.card-main-token-id .center .info,
+.card-main-token-id .right .info {
+    color: #fff !important;
+    font-size: 13px !important;
+    padding-top: 10px;
+}
+
+.land-desc {
+    position: relative;
+    font-size: 15px;
+    border-radius: 10px;
+    padding: 20px 30px;
+}
+
+.land-desc .close-img {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 20px;
+    height: 20px;
+}
+
+.land-desc .title {
+    font-weight: bold;
+    color: #fcd436;
+    padding-bottom: 10px !important;
+}
+
+.land-desc .info-flex {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-bottom: 4px;
+}
+
+.land-desc .info-flex .info {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-bottom: 4px;
+    font-size: 14px;
+}
+
+.land-desc .info-flex .dian {
+    font-size: 30px;
+    margin: -20px 10px 0 0;
+}
+
+.card-main-land-rules {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 50px;
+    color: #fcd436 !important;
+    font-size: 12px;
+    text-align: center;
+    border-bottom: 1px solid #fcd436 !important;
+}
+
+.land-btn {
+    font-size: 13px;
+    width: 85px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+    padding: 8px 0;
+    background-color: #fcd436 !important;
+    color: #000 !important;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.land-card-main {
+    width: 80vw;
+    max-height: calc(100% - 100px);
+    overflow: scroll;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    padding: 2px;
+    border-radius: 10px !important;
+    background-color: #fcd436 !important;
+}
+
+.land-card-main::-webkit-scrollbar {  
+    display: none; /* 隐藏滚动条 */  
+}  
+
+.land-card-main #SelectedLandLevelId,
+.land-card-main .land-desc,
+.land-card-main .top {
+    width: 100%;
+    height: 100%;
+    background-color: #000000e0;
+    color: #fff;
+}
+
+.land-card-main .top {
+    position: relative;
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+    padding-block: 10px !important;
+    padding-inline: 20px !important;
+}
+
+
+.land-card-main .top .close-img {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 20px;
+    height: 20px;
+}
+
+
+.land-card-main #SelectedLandLevelId {
+    border-bottom-left-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;
+    padding-block: 15px !important;
+    padding-inline: 20px !important;
+}
+
+.land-card-main .top .land-title {
+    font-size: 15px;
+    font-weight: bold;
+    color: #fcd436;
+    text-align: center;
+    padding: 10px 0 20px;
+}
+
+.land-card-main .top .land-center-desc {
+    font-size: 14px;
+    color: #fff;
+    padding: 10px 0;
+}
+
+#SelectedLandLevelId .land-level {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px 0;
+}
+
+#SelectedLandLevelId .land-level .left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#SelectedLandLevelId .land-level .left .color-block {
+    width: 13px;
+    height: 13px;
+    border-radius: 2px;
+    margin-right: 10px;
+}
+
+#SelectedLandLevelId .land-level .left .color-1 {
+    background: #971e77;
+}
+
+#SelectedLandLevelId .land-level .left .color-2 {
+    background: #cc2b6b;
+}
+
+#SelectedLandLevelId .land-level .left .color-3 {
+    background: #ec6053;
+}
+
+#SelectedLandLevelId .land-level .left .color-4 {
+    background: #f1a23f;
+}
+
+#SelectedLandLevelId .land-level .left .color-5 {
+    background: #f7d147;
+}
+
+#SelectedLandLevelId .land-level .left .color-6 {
+    background: #d3d3d3;
+}
+
+.dialog-main {
+    width: 100vw;
+    height: calc(100% - 70px);
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 50%;
+    z-index: 99;
+    transform: translateX(-50%);
+}
+
+.dialog {
+    width: 100vw;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 50%;
+    z-index: 999;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dialog .main {
+    width: 55%;
+    border-radius: 15px;
+    background-color: #000;
+    color: #fcd436;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.dialog .main img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.dialog .main .main-info {
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+.body-loading {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+}
+
+.body-loading .loading-main {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #fcd436;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: loading-spin 2s linear infinite;
+}
+
+@keyframes loading-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.tabbar-map {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 70px;
+    width: 100%;
+    background: #000;
+    z-index: 99999;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding-top: 8px;
+    border-top: 1px solid #fcd436
+}
+
+.tabbar-map .tab {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.tabbar-map .tab .tab-text {
+    color: #eee;
+    font-size: 13px;
+    padding: 5px 0
+}
+
+.tabbar-map .tab .tab-text-active {
+    background-color: #fcd436;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-emphasis-color: transparent;
+}
+
+.quickBuy-btn {
+    position: fixed;
+    bottom: 24vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 1px 20px;
+    background-color: #fcd436;
+    border: 2px solid #000000e0;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 35px;
+}
+
+.quickbuy-card-main {
+    width: 100%;
+    height: 100%;
+    background: #000000e0;
+    border-radius: 0 0 10px 10px;
+    -webkit-border-radius: 0 0 10px 10px;
+    -moz-border-radius: 0 0 10px 10px;
+    -ms-border-radius: 0 0 10px 10px;
+    -o-border-radius: 0 0 10px 10px;
+}
+
+.title-bottom {
+    color: #999 !important; 
+    margin-bottom: 10px;
+}
+
+.land-select-card {
+    background-color: #fcd436;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+.land-select {
+    width: 67vw;
+    height: 4vh;
+    background: #000000e0;
+    color: #fcd436;
+    margin: 3px;
+    text-align: center;
+    text-align-last: center;
+    /* padding: 0 0 0 43%; */
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    outline:none;
+}
+
+.land-select option{
+    text-align: center;
+}
+
+.land-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-around;
+    flex-direction: row;
+}
+
+.land-options-item {
+    display: inline-block;
+    width: 20vw;
+    height: 4vh;
+    margin-top: 10px;
+    text-align: center;
+    line-height: 4vh;
+    background-color: #fcd436;
+    color: #000;
+    font-weight: bold;
+}
